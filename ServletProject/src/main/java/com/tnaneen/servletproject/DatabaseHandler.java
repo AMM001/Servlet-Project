@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -336,11 +338,13 @@ public class DatabaseHandler {
             pst.setString(4, user.getUserName());
             pst.setString(5, user.getAddress());
             pst.setInt(6, user.getCreditLimit());
-            pst.setDate(7, (Date) user.getBirthday());
+            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(user.getBirthday());
+            pst.setDate(7, new java.sql.Date(date.getTime()));
             pst.setInt(8, user.getIsAdmin());
             pst.executeUpdate();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (ParseException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnection();
         }
@@ -361,7 +365,7 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday"));
+                user.setBirthday(rs.getDate("birthday").toString());
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
             }
@@ -372,7 +376,6 @@ public class DatabaseHandler {
         } finally {
             closeConnection();
         }
-
     }
 
     public ArrayList<User> getAllUsers() {
@@ -389,7 +392,7 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday"));
+                user.setBirthday(rs.getDate("birthday").toString());
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
                 users.add(user);
@@ -411,7 +414,7 @@ public class DatabaseHandler {
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
-            pst.setDate(4, (Date) user.getBirthday());
+            pst.setString(4, user.getBirthday());
             pst.setString(5, user.getEmail());
             pst.executeUpdate();
         } catch (SQLException ex) {
