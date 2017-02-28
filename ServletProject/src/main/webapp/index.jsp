@@ -189,7 +189,6 @@
 									<a href="#">Laptops</a>
 									<a href="#">Gaming</a>
 									<a href="#">headphones</a>
-									
 								</div>
 								</div>
 						 <!--
@@ -234,7 +233,6 @@
 									<a href="#">Laptops</a>
 									<a href="#">Gaming</a>
 									<a href="#">headphones</a>
-									
 								</div>
 								</div>
 								<li ><a href="cart.html">MyCart</a></li>		

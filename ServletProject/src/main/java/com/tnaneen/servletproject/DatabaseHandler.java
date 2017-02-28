@@ -338,13 +338,10 @@ public class DatabaseHandler {
             pst.setString(4, user.getUserName());
             pst.setString(5, user.getAddress());
             pst.setInt(6, user.getCreditLimit());
-            java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(user.getBirthday());
-            pst.setDate(7, new java.sql.Date(date.getTime()));
+            pst.setDate(7, (Date) user.getBirthday());
             pst.setInt(8, user.getIsAdmin());
             pst.executeUpdate();
         } catch (SQLException ex) {
-        } catch (ParseException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnection();
         }
@@ -365,7 +362,7 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday").toString());
+                user.setBirthday(rs.getDate("birthday"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
             }
@@ -392,7 +389,7 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday").toString());
+                user.setBirthday(rs.getDate("birthday"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
                 users.add(user);
@@ -414,7 +411,7 @@ public class DatabaseHandler {
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
-            pst.setString(4, user.getBirthday());
+            pst.setDate(4, (Date) user.getBirthday());
             pst.setString(5, user.getEmail());
             pst.executeUpdate();
         } catch (SQLException ex) {

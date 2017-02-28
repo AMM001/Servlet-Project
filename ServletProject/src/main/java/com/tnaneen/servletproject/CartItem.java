@@ -12,17 +12,14 @@ package com.tnaneen.servletproject;
 public class CartItem {
     
     private int userId, productId, quantity, bought;
-
     public CartItem() {
     }
-
     public CartItem(int userId, int productId, int quantity, int bought) {
         this.userId = userId;
         this.productId = productId;
         this.quantity = quantity;
         this.bought = bought;
     }
-
     public int getUserId() {
         return userId;
     }

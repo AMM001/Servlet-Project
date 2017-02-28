@@ -1,6 +1,7 @@
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\DatabaseHandler.java
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\Product.java
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\CartItem.java
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\User.java
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\loginServlet.java
-F:\ITI\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\registerServlet.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\CartItem.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\loginServlet.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\Product.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\User.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\getAllProductsServlet.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\DatabaseHandler.java
+C:\Users\bo\Documents\NetBeansProjects\Servlet-Project\ServletProject\src\main\java\com\tnaneen\servletproject\registerServlet.java
