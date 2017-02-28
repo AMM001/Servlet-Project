@@ -62,7 +62,8 @@ public class registerServlet extends HttpServlet {
             session.setAttribute("user", user);
             session.setAttribute("category", "mobiles");
             //rd.forward(request, response);
-            response.sendRedirect("index.jsp");
+            //response.sendRedirect("index.jsp");
+            rd.forward(request, response);
         }
         else
         {

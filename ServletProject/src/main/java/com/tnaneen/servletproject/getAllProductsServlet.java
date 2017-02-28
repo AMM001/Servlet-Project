@@ -7,7 +7,7 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ehabm
+ * @author bo
  */
-@WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
-public class loginServlet extends HttpServlet {
+@WebServlet(name = "getAllProductsServlet", urlPatterns = {"/getAllProductsServlet"})
+public class getAllProductsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,23 +33,16 @@ public class loginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        RequestDispatcher rd=request.getRequestDispatcher("getAllProductsServlet");
-        DatabaseHandler db = new DatabaseHandler();
-        User exists = db.getUser(email, password);
+        HttpSession session=request.getSession(true);
+        String category=(String) session.getAttribute("category");
+        System.out.println(category);
+        ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
+        System.out.println(products);
+        session.setAttribute("products",products);
+        response.sendRedirect("index.jsp");
         
-        if (exists != null) {
-            //redirect to home
-            HttpSession session=request.getSession(true);
-            session.setAttribute("user", exists);
-            session.setAttribute("category", "mobiles");
-            //response.sendRedirect("index.jsp");
-            rd.forward(request, response);
-        } else {
-            response.sendRedirect("logIn.jsp");
-        }
-
+        /////////////////////////////// tst
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
