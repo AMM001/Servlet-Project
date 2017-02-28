@@ -35,17 +35,34 @@ public class loginServlet extends HttpServlet {
             throws ServletException, IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        RequestDispatcher rd=request.getRequestDispatcher("getAllProductsServlet");
+        RequestDispatcher rd = request.getRequestDispatcher("getAllProductsServlet");
         DatabaseHandler db = new DatabaseHandler();
         User exists = db.getUser(email, password);
-        
+
         if (exists != null) {
             //redirect to home
-            HttpSession session=request.getSession(true);
-            session.setAttribute("user", exists);
-            session.setAttribute("category", "mobiles");
-            //response.sendRedirect("index.jsp");
-            rd.forward(request, response);
+            HttpSession session = request.getSession(true);
+            if (session.getAttribute("addingToCart") !=null) {
+            
+                Integer productID = (int) session.getAttribute("productId");
+            
+                session.setAttribute("user", exists);
+                session.setAttribute("category", "mobiles");
+                session.removeAttribute("addingToCart");
+                session.removeAttribute("productId");
+                //response.sendRedirect("Home.jsp");
+                System.out.println("i am from add to cart");
+                 response.sendRedirect("CheckIfLoggedIn?selectedProduct="+productID);
+            }
+            else
+            {
+                session.setAttribute("user", exists);
+                session.setAttribute("category", "mobiles");
+                //response.sendRedirect("Home.jsp");
+                rd.forward(request, response);
+
+            }
+
         } else {
             response.sendRedirect("logIn.jsp");
         }

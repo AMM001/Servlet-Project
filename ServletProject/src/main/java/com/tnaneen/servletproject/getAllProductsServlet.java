@@ -39,7 +39,7 @@ public class getAllProductsServlet extends HttpServlet {
         ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
         System.out.println(products);
         session.setAttribute("products",products);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("Home.jsp");
         
         /////////////////////////////// tst
         
