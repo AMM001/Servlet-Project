@@ -14,20 +14,19 @@
 
 <body>
     <div class="wrapper">
-    <form class="form-signin">       
+    <form class="form-signin" method="post" action="registerServlet">       
       <h2 class="form-signin-heading">welcome</h2>
 	  
-      <input type="text" class="form-control" name="fullName" placeholder="Fullname" required="" autofocus="" />
+      <input type="text" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
 	  
       <input type="text" class="form-control" name="userName" placeholder="userName" required="" autofocus="" />
-	  
-	  
-      <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-	  
+	   
       <input type="text" class="form-control" name="Address" placeholder=" Address" required="" autofocus="" />
 	  
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
-    
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>  
+      <!--
+      <input type="date" class="form-control" name="birthday" placeholder=" autofocus="" />
+    -->
       <button class="btn btn-lg btn-primary btn-block" type="submit">sign up</button>   
     </form>
   </div>

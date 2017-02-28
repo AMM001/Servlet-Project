@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
 	ustora by freshdesignweb.com
 	Twitter: https://twitter.com/freshdesignweb
@@ -79,7 +79,8 @@
   </head>
   <body>
   <!--no login-->
-   
+  <c:choose>
+      <c:when test="${sessionScope.user==null}">
     <div class="header-area">
         <div class="container">
             <div class="row">
@@ -91,8 +92,8 @@
                             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
 							-->
-                            <li><a href="logIn.html"><i class="fa fa-user"></i> Login</a></li>
-							<li><a href="sign up.html"><i class="fa fa-user"></i> Sign up</a></li>
+                            <li><a href="logIn.jsp"><i class="fa fa-user"></i> Login</a></li>
+							<li><a href="sign up.jsp"><i class="fa fa-user"></i> Sign up</a></li>
                        
 						</ul>
                     </div>
@@ -100,6 +101,8 @@
             </div>
         </div>
     </div> <!-- End header area -->
+    </c:when>
+    <c:otherwise>
 		<!--with log in -->
 		
 		    <div class="header-area">
@@ -122,12 +125,17 @@
             </div>
         </div>
     </div> <!-- End header area -->
+    </c:otherwise>
+    </c:choose>
 	
 
 	
 
 	<!--No Login-->
-	
+        <c:choose>
+            
+            <c:when test="${sessionScope.user==null}">
+            
 	<div class="site-branding-area">
         <div class="container">
             <div class="row">
@@ -139,10 +147,10 @@
             </div>
         </div>
     </div> <!-- End site branding area -->
+    </c:when>
 	
 	
-	
-	
+    <c:otherwise>
 	<!--with Log in-->
 	<div class="site-branding-area">
         <div class="container">
@@ -160,11 +168,13 @@
             </div>
         </div>
     </div> <!-- End site branding area -->
-	
-	
+    </c:otherwise>
+	</c:choose>
 	
 	
 	<!--NoLogIn-->
+        <c:choose>
+            <c:when test="${sessionScope.user==null}">
     <div class="mainmenu-area">
         <div class="container">
             <div class="row">
@@ -207,9 +217,9 @@
         </div>
     </div> <!-- End mainmenu area -->
 
+	</c:when>
 	
-	
-	
+    <c:otherwise>
 	<!--Login-->
 	
 	<div class="mainmenu-area">
@@ -252,7 +262,8 @@
             </div>
         </div>
     </div> <!-- End mainmenu area -->
-	
+    </c:otherwise>
+	</c:choose>
 	
 	
 	
@@ -355,8 +366,8 @@
                                 <div class="product-f-image">
                                     <img src="img/product-1.jpg" alt="">
                                     <div class="product-hover">
-                                        <a href="cart.html" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                        <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        <a href="" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                        <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                     </div>
                                 </div>
                                 

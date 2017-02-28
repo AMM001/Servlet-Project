@@ -14,7 +14,7 @@
 
 <body>
     <div class="wrapper">
-    <form class="form-signin">       
+    <form class="form-signin" method="post" action="loginServlet">       
       <h2 class="form-signin-heading">welcome back </h2>
       <input type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
       <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      

@@ -7,11 +7,18 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,25 +38,35 @@ public class registerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String username = request.getParameter("username");
-            String address = request.getParameter("address");
-            String birthday = request.getParameter("birthday");
-            
-            DatabaseHandler dbh = new DatabaseHandler();
-            User user = new User();
-            
-            user.setEmail(email);
-            user.setPassword(password);
-            user.setUserName(username);
-            user.setAddress(address);
-            user.setBirthday(null);
-            dbh.registerUser(user);
+       
+        /* TODO output your page here. You may use following sample code. */
+        
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String username = request.getParameter("userName");
+        String address = request.getParameter("address");
+        RequestDispatcher rd=request.getRequestDispatcher("getAllProductsServlet"); 
+        //String birthday = request.getParameter("birthday");
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //Date startDate = sdf.parse(birthday);
+        DatabaseHandler dbh = new DatabaseHandler();
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUserName(username);
+        user.setAddress(address);
+        //user.setBirthday(null);
+        if(dbh.registerUser(user))
+        {
+            HttpSession session=request.getSession(true);
+            session.setAttribute("user", user);
+            session.setAttribute("category", "mobiles");
+            //rd.forward(request, response);
+            response.sendRedirect("index.jsp");
+        }
+        else
+        {
+            response.sendRedirect("sign up.jsp");
         }
     }
 

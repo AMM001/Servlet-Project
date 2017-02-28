@@ -23,7 +23,7 @@ public class DatabaseHandler {
 
     private final String URL = "jdbc:mysql://localhost/ecommerce";
     private final String userName = "root";
-    private final String password = "1234";
+    private final String password = "";
     private Connection conn;
     private PreparedStatement pst;
     private ResultSet rs;
@@ -326,21 +326,23 @@ public class DatabaseHandler {
 
     ////////////////////// End of -- CART -- processing ////////////////////////
     ///////////////////// start user processing////////////
-    public void registerUser(User user) {
+    public boolean registerUser(User user) {
         try {
             openConnection();
-            pst = conn.prepareStatement("INSERT INTO USER VALUES(?,?,?,?,?,?,?,?)");
-            pst.setInt(1, user.getId());
-            pst.setString(2, user.getEmail());
-            pst.setString(3, user.getPassword());
-            pst.setString(4, user.getUserName());
-            pst.setString(5, user.getAddress());
-            pst.setInt(6, user.getCreditLimit());
-            pst.setDate(7, (Date) user.getBirthday());
-            pst.setInt(8, user.getIsAdmin());
+            pst = conn.prepareStatement("INSERT INTO USER (EMAIL,PASSWORD,USERNAME,ADDRESS) VALUES(?,?,?,?)");
+            pst.setString(1, user.getEmail());
+            pst.setString(2, user.getPassword());
+            pst.setString(3, user.getUserName());
+            pst.setString(4, user.getAddress());
+            //pst.setDate(5, (Date) user.getBirthday());
+            System.out.println("7alawa");
             pst.executeUpdate();
+            System.out.println("not t7alawa");
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            System.out.println("problem is here at catch");
+            return false;
         } finally {
             closeConnection();
         }

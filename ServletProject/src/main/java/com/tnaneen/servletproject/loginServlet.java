@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,29 +32,20 @@ public class loginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String[] rememberMe =  request.getParameterValues("rememberMe");
-            
-            DatabaseHandler dbh = new DatabaseHandler();
-            User exists = dbh.getUser(email, password);
-            
-            if(exists!=null){
-                //check remember me status
-                if(rememberMe != null){
-                    //System.out.println("isRemembered: " + rememberMe[0]);
-                    //handle cookie
-                }
-                
-                //redirect to home
-            }
-            else{
-                response.sendRedirect("login.html");
-            }
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        DatabaseHandler db = new DatabaseHandler();
+        User exists = db.getUser(email, password);
+        
+        if (exists != null) {
+            //redirect to home
+            HttpSession session=request.getSession(true);
+            session.setAttribute("user", exists);
+            response.sendRedirect("index.jsp");
+        } else {
+            response.sendRedirect("logIn.jsp");
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
