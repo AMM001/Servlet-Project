@@ -38,6 +38,9 @@ public class getAllProductsServlet extends HttpServlet {
         ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
         session.setAttribute("products",products);
         response.sendRedirect("index.jsp");
+        
+        /////////////////////////////// tst
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
