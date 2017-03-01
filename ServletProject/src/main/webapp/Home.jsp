@@ -94,7 +94,7 @@
                                         -->
                                         <li><a href="logIn.jsp"><i class="fa fa-user"></i> Login</a></li>
                                         <li><a href="sign up.jsp"><i class="fa fa-user"></i> Sign up</a></li>
-
+                                            
                                     </ul>
                                 </div>
                             </div>
@@ -116,9 +116,9 @@
             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                         -->
-                                        <li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
-                                        <li><a href="#"><i class="fa fa-user"></i> Log out</a></li>
-
+                                        <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
+                                        <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+                                        <li><a href="charge.jsp"><i class="fa fa-money"></i> Recharge</a></li>    
                                     </ul>
                                 </div>
                             </div>
@@ -162,7 +162,7 @@
                             </div>			
                             <div class="col-sm-6">
                                 <div class="shopping-item">
-                                    <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i></a>
+                                    <a href="cart.jsp">Cash - <span class="cart-amunt">$${sessionScope.user.getCreditLimit()}</span> <i class="fa fa-shopping-cart"></i></a>
                                 </div>
                             </div>			
                         </div>
@@ -195,10 +195,10 @@
                                     <div class="dropdown">
                                         <button class="dropbtn">Categories</button>
                                         <div class="dropdown-content">
-                                            <a href="#">Mobile phone</a>
-                                            <a href="#">Laptops</a>
-                                            <a href="#">Gaming</a>
-                                            <a href="#">headphones</a>
+                                            <a href="getAllProductsServlet?category=mobiles">Mobile phone</a>
+                                            <a href="getAllProductsServlet?category=laptops">Laptops</a>
+                                            <a href="getAllProductsServlet?category=gaming">Gaming</a>
+                                            <a href="getAllProductsServlet?category=headphones">headphones</a>
                                         </div>
                                     </div>
                                     <!--
@@ -239,10 +239,10 @@
                                     <div class="dropdown">
                                         <button class="dropbtn">Categories</button>
                                         <div class="dropdown-content">
-                                            <a href="#">Mobile phone</a>
-                                            <a href="#">Laptops</a>
-                                            <a href="#">Gaming</a>
-                                            <a href="#">headphones</a>
+                                            <a href="getAllProductsServlet?category=mobiles">Mobile phone</a>
+                                            <a href="getAllProductsServlet?category=laptops">Laptops</a>
+                                            <a href="getAllProductsServlet?category=gaming">Gaming</a>
+                                            <a href="getAllProductsServlet?category=headphones">headphones</a>
                                         </div>
                                     </div>
                                     <li ><a href="cart.jsp">MyCart</a></li>		
@@ -366,7 +366,7 @@
                                             <img src="img/product-1.jpg" alt="">
                                             <div class="product-hover">
                                                 <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                <a href="single-product.jsp" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 

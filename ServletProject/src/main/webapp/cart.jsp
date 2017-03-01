@@ -91,8 +91,9 @@
     <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
     <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                 -->
-                                <li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Log out</a></li>
+                                <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
+                                <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+                                <li><a href="charge.jsp"><i class="fa fa-money"></i> Recharge</a></li>
 
                             </ul>
                         </div>

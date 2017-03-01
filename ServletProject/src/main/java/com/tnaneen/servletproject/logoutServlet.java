@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bo
+ * @author ehabm
  */
-@WebServlet(name = "getAllProductsServlet", urlPatterns = {"/getAllProductsServlet"})
-public class getAllProductsServlet extends HttpServlet {
+@WebServlet(name = "logoutServlet", urlPatterns = {"/logoutServlet"})
+public class logoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,29 +33,15 @@ public class getAllProductsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession(true);
-        String category=null;
-        System.out.println("before request");
-        System.out.println(request.getParameter("category"));
-        if(request.getParameter("category")!=null)
+        HttpSession session=request.getSession();
+        session.removeAttribute("user");
+        DatabaseHandler db=new DatabaseHandler();
+        ArrayList<CartItem> shoppingCart=(ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
+        for(CartItem item:shoppingCart)
         {
-            System.out.println("hamada");
-            category=(String) request.getParameter("category");
-            session=request.getSession();
-            session.setAttribute("category", category);
+            db.insertNewCartItem(item);
         }
-        else
-        {
-            category=(String) session.getAttribute("category");
-        }
-        System.out.println(category);
-        ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
-        System.out.println(products);
-        session.setAttribute("products",products);
         response.sendRedirect("Home.jsp");
-        
-        /////////////////////////////// tst
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

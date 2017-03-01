@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
         ustora by freshdesignweb.com
@@ -10,7 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cart Page - Ustora Demo</title>
+        <title>Product Page - Ustora Demo</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -78,30 +77,24 @@
                 background-color: #5A87CA;
             }
         </style>
+
     </head>
-    <body>
+    <body>			
         <div class="header-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8">
                         <div class="user-menu">
                             <ul>
-                                <!--
-    <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
-    <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
-    <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
-                                -->
                                 <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
                                 <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
-                                <li><a href="charge.jsp"><i class="fa fa-money"></i> Recharge</a></li>
 
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!-- End header area -->
-
+        </div> 
 
 
         <div class="site-branding-area">
@@ -109,7 +102,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="Home.jsp"><img src="img/logo.png"></a></h1>
+                            <h1><a href="index.html"><img src="img/logo.png"></a></h1>
                         </div>
                     </div>			
                     <div class="col-sm-6">
@@ -120,7 +113,6 @@
                 </div>
             </div>
         </div> <!-- End site branding area -->
-
 
 
         <div class="mainmenu-area">
@@ -136,28 +128,20 @@
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li ><a href="Home.jsp">Home</a></li>
+                            <li><a href="index.html">Home</a></li>
 
                             <div class="dropdown">
                                 <button class="dropbtn">Categories</button>
                                 <div class="dropdown-content">
-                                    <a href="#">Mobile phone</a>
-                                    <a href="#">Laptops</a>
-                                    <a href="#">Gaming</a>
-                                    <a href="#">headphones</a>
+                                    <a href="getAllProductsServlet?category=mobiles">Mobile phone</a>
+                                    <a href="getAllProductsServlet?category=laptops">Laptops</a>
+                                    <a href="getAllProductsServlet?category=gaming">Gaming</a>
+                                    <a href="getAllProductsServlet?category=headphones">headphones</a>
 
                                 </div>
                             </div>
-                            <li class="active"><a href="cart.html">MyCart</a></li>		
-                            <!--
-   <li><a href="checkout.html">Checkout</a></li>
-  <li><a href="single-product.html">Single product</a></li>
-                           <li><a href="shop.html">Shop page</a></li>
+                            <li ><a href="cart.jsp">MyCart</a></li>		
 
-                      
-   <li><a href="#">Others</a></li>
-   <li><a href="#">Contact</a></li>
-                            -->
                         </ul>
                     </div>  
                 </div>
@@ -165,119 +149,76 @@
         </div> <!-- End mainmenu area -->
 
 
-
-
         <div class="product-big-title-area">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="product-bit-title text-center">
-                            <h2>Shopping Cart</h2>
+                            <h2>Shop</h2>
                         </div>
                     </div>
                 </div>
             </div>
-        </div> <!-- End Page title area -->
+        </div>
 
 
         <div class="single-product-area">
             <div class="zigzag-bottom"></div>
             <div class="container">
                 <div class="row">
+                    <div class="col-md-4">
+
+
+
+                    </div>
 
                     <div class="col-md-8">
                         <div class="product-content-right">
-                            <div class="woocommerce">
-                                <form method="post" action="#">
-                                    <table cellspacing="0" class="shop_table cart">
-                                        <thead>
-                                            <tr>
-                                                <th class="product-remove">&nbsp;</th>
-                                                <th class="product-thumbnail">&nbsp;</th>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-price">Price</th>
-                                                <th class="product-quantity">Quantity</th>
-                                                <th class="product-subtotal">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <c:forEach items="${sessionScope.MyShoppingCart}" var="cartItem" >
-                                            <tr class="cart_item">
-                                                <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="#">remove</a> 
-                                                </td>
 
-                                                <td class="product-thumbnail">
-                                                    <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
-                                                </td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="product-images">
+                                        <div class="product-main-img">
+                                            <img src="img/product-2.jpg" alt="">
+                                        </div>
 
-                                                <td class="product-name">
-                                                    <a href="single-product.html">${cartItem.getProductId()}</a> 
-                                                </td>
-
-                                                <td class="product-price">
-                                                    <span class="amount">£15.00</span> 
-                                                </td>
-
-                                                <td class="product-quantity">
-                                                    <div class="quantity buttons_added">
-
-                                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="${cartItem.getQuantity()}" min="0" step="1">
-
-
-                                                    </div>
-                                                </td>
-
-                                                <td class="product-subtotal">
-                                                    <span class="amount">${15*cartItem.getQuantity()}</span> 
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                        <tr>
-                                            <td class="actions" colspan="6">
-
-                                                <input type="submit" value="Save" name="save" class="button">
-                                                <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-                                </form>
-
-                                <div class="cart-collaterals">
-
-
-
-                                    <div class="cart_totals ">
-                                        <h2>Cart Totals</h2>
-
-                                        <table cellspacing="0">
-                                            <tbody>
-                                                <tr class="cart-subtotal">
-                                                    <th>Cart Subtotal</th>
-                                                    <td><span class="amount">£15.00</span></td>
-                                                </tr>
-
-                                                <tr class="shipping">
-                                                    <th>Shipping and Handling</th>
-                                                    <td>Free Shipping</td>
-                                                </tr>
-
-                                                <tr class="order-total">
-                                                    <th>Order Total</th>
-                                                    <td><strong><span class="amount">£15.00</span></strong> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
+                                </div>
 
+                                <div class="col-sm-6">
+                                    <div class="product-inner">
+
+
+                                        <form>
+
+                                            <button class="add_to_cart_button" type="submit">Add to cart</button>
+                                        </form>   
+
+
+
+                                        <div role="tabpanel">
+
+                                            <div class="tab-content">
+                                                <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                                    <h1>${param.productName}</h1>
+                                                    <h2>Product Description</h2>  
+                                                    <p>${param.productDesc}</p>
+                                                    <P style="color:steelblue;">$${param.productPrice}</P>
+                                                </div>
+
+                                            </div>
+                                        </div>'
+
+                                    </div>
                                 </div>
                             </div>                        
-                        </div>                    
+                        </div>            
                     </div>
                 </div>
             </div>
         </div>
+
+
 
 
 
@@ -286,14 +227,14 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="copyright">
-                            <p>&copy; Coded with ♥. </p>
+                            <p>&copy; coded with ♥ </p>
                         </div>
                     </div>
 
 
                 </div>
             </div>
-        </div> <!-- End footer bottom area -->
+        </div>
 
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>

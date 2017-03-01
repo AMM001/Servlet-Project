@@ -1,8 +1,10 @@
 com\tnaneen\servletproject\DatabaseHandler.class
 com\tnaneen\servletproject\Product.class
 com\tnaneen\servletproject\loginServlet.class
+com\tnaneen\servletproject\RechargeCreditServlet.class
 com\tnaneen\servletproject\CartItem.class
 com\tnaneen\servletproject\registerServlet.class
 com\tnaneen\servletproject\CheckIfLoggedIn.class
 com\tnaneen\servletproject\getAllProductsServlet.class
+com\tnaneen\servletproject\logoutServlet.class
 com\tnaneen\servletproject\User.class
