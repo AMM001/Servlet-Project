@@ -201,14 +201,15 @@ public class DatabaseHandler {
             pst.setString(1,category);
              
             rs = pst.executeQuery();
-           
+           System.out.println("====------------===" );
             while(rs.next())
              {
+                 System.out.println("=//////////////======");
                  sum++;
                  //////////////// check which column contains my Email to get friends data
                   Product product = new Product(rs.getInt("id"), rs.getString("name"),rs.getInt("price") , rs.getInt("available"), rs.getString("category"), rs.getString("description"), "C:23456");
                   products.add(product);
-               
+                  System.out.println("=======" + product.getId());
              }
              System.out.println("sum: "+sum);
         } catch (SQLException ex) {
@@ -469,7 +470,7 @@ public class DatabaseHandler {
         }
     }
     
-    public int getCash(String code)
+    public double getCash(String code)
     {
         try {
             openConnection();
@@ -478,7 +479,7 @@ public class DatabaseHandler {
             rs=pst.executeQuery();
             if(rs.next())
             {
-                return rs.getInt("AMTOFMONEY");
+                return rs.getDouble("AMTOFMONEY");
             }
             else
             {
