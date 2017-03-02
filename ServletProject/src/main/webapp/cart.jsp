@@ -138,16 +138,7 @@
                         <ul class="nav navbar-nav">
                             <li ><a href="Home.jsp">Home</a></li>
 
-                            <div class="dropdown">
-                                <button class="dropbtn">Categories</button>
-                                <div class="dropdown-content">
-                                    <a href="#">Mobile phone</a>
-                                    <a href="#">Laptops</a>
-                                    <a href="#">Gaming</a>
-                                    <a href="#">headphones</a>
-
-                                </div>
-                            </div>
+                        
                             <li class="active"><a href="cart.html">MyCart</a></li>		
                             <!--
    <li><a href="checkout.html">Checkout</a></li>

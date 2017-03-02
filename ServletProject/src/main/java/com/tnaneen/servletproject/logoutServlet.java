@@ -33,14 +33,16 @@ public class logoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.removeAttribute("user");
-        DatabaseHandler db=new DatabaseHandler();
-        ArrayList<CartItem> shoppingCart=(ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
-        for(CartItem item:shoppingCart)
-        {
-            db.insertNewCartItem(item);
+        DatabaseHandler db = new DatabaseHandler();
+        ArrayList<CartItem> shoppingCart = (ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
+        if (shoppingCart != null) {
+            for (CartItem item : shoppingCart) {
+                db.insertNewCartItem(item);
+            }
         }
+
         response.sendRedirect("Home.jsp");
     }
 

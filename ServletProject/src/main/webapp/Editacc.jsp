@@ -18,7 +18,7 @@
 			<center>
 		<img class="img-circle" src="img/edit-.jpg"  style="width:128px;height:128px;">
 			</center>
-      <h2 class="form-signin-heading">Hi</h2>
+        <h2 class="form-signin-heading">Hi ${sessionScope.user.getEmail()}</h2>
 	  
       <input type="text" class="form-control" name="fullName" placeholder="Fullname" required="" autofocus="" />
 	  

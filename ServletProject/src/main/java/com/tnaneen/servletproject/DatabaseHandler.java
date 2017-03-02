@@ -330,7 +330,7 @@ public class DatabaseHandler {
     public boolean registerUser(User user) {
         try {
             openConnection();
-            pst = conn.prepareStatement("INSERT INTO USER (EMAIL,PASSWORD,USERNAME,ADDRESS) VALUES(?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO ecommerce.USER (EMAIL,PASSWORD,USERNAME,ADDRESS) VALUES(?,?,?,?)");
             pst.setString(1, user.getEmail());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getUserName());
@@ -352,7 +352,7 @@ public class DatabaseHandler {
     public User getUser(String email, String pass) {
         try {
             openConnection();
-            pst = conn.prepareStatement("SELECT * FROM USER WHERE EMAIL=? AND PASSWORD=?");
+            pst = conn.prepareStatement("SELECT * FROM ecommerce.USER WHERE EMAIL=? AND PASSWORD=?");
             pst.setString(1, email);
             pst.setString(2, pass);
             rs = pst.executeQuery();
@@ -382,7 +382,7 @@ public class DatabaseHandler {
         try {
             ArrayList<User> users = new ArrayList<>();
             openConnection();
-            pst = conn.prepareStatement("SELECT * FROM USER");
+            pst = conn.prepareStatement("SELECT * FROM ecommerce.USER");
             rs = pst.executeQuery();
             User user = null;
             while (rs.next()) {
@@ -410,7 +410,7 @@ public class DatabaseHandler {
     public void updateUser(User user) {
         try {
             openConnection();
-            pst = conn.prepareStatement("UPDATE USER SET PASSWORD=?,ADDRESS=?,USERNAME=?,BIRTHDAY=? WHERE EMAIL=?");
+            pst = conn.prepareStatement("UPDATE ecommerce.USER SET PASSWORD=?,ADDRESS=?,USERNAME=?,BIRTHDAY=? WHERE EMAIL=?");
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
@@ -427,10 +427,11 @@ public class DatabaseHandler {
     public void addCredit(String email, int credit) {
         try {
             openConnection();
-            pst = conn.prepareStatement("UPDATE USER SET CREDITLIMIT=? WHERE EMAIL=?");
+            System.out.println("db"+credit);
+            pst = conn.prepareStatement("UPDATE ecommerce.USER SET CREDITLIMIT=? WHERE EMAIL=?");
             pst.setInt(1, credit);
             pst.setString(2, email);
-            pst.executeUpdate();
+            System.out.println(pst.executeUpdate());
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -443,7 +444,7 @@ public class DatabaseHandler {
     {
         try {
             openConnection();
-            pst= conn.prepareStatement("INSERT INTO CASHCODES VALUES(?,?)");
+            pst= conn.prepareStatement("INSERT INTO ecommerce.CASHCODES VALUES(?,?)");
             pst.setString(1, code);
             pst.setInt(2, cash);
             pst.executeUpdate();
@@ -459,7 +460,7 @@ public class DatabaseHandler {
     {
         try {
             openConnection();
-            pst=conn.prepareStatement("DELETE FROM CASHCODES WHERE CODE=?");
+            pst=conn.prepareStatement("DELETE FROM ecommerce.CASHCODES WHERE CODE=?");
             pst.setString(1, code);
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -474,7 +475,7 @@ public class DatabaseHandler {
     {
         try {
             openConnection();
-            pst=conn.prepareStatement("SELECT * FROM CASHCODES WHERE CODE=?");
+            pst=conn.prepareStatement("SELECT * FROM ecommerce.CASHCODES WHERE CODE=?");
             pst.setString(1, code);
             rs=pst.executeQuery();
             if(rs.next())
