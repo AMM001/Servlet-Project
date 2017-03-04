@@ -557,5 +557,29 @@ public class DatabaseHandler {
         }
         
     }
+    
+    public ArrayList<CashCode> getAllCash(){
+       try {
+            ArrayList<CashCode> cashList = new ArrayList<>();
+            openConnection();
+            pst = conn.prepareStatement("SELECT * FROM CASHCODES");
+            rs = pst.executeQuery();
+            CashCode cash;
+            while (rs.next()) {
+                cash = new CashCode();
+                cash.setCode(rs.getString("code"));
+                cash.setCash(rs.getInt("amtOfMoney"));
+                cashList.add(cash);
+            }
+            return cashList;
+            
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        } finally {
+            closeConnection();
+        } 
+    }
+    
     ///////////////////////////// end of cash code processing ////////////////////
 }

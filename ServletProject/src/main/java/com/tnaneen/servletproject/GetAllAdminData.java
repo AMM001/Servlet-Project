@@ -5,22 +5,22 @@
  */
 package com.tnaneen.servletproject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletContext;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rocke
  */
-@WebServlet(name = "AddProductServlet", urlPatterns = {"/addProductServlet"})
-public class AddProductServlet extends HttpServlet {
+@WebServlet(name = "GetAllAdminData", urlPatterns = {"/GetAllAdminData"})
+public class GetAllAdminData extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,26 +36,28 @@ public class AddProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-
-            String prodName = request.getParameter("prodName");
-            ServletContext context = request.getServletContext();
-            String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
-            String prodPrice = request.getParameter("prodPrice");
-            String prodDesc = request.getParameter("prodDesc");
-            String prodCateg = request.getParameter("category");
-            //na2es el category
-           
-            System.out.println("PATH: " + prodImage);
-         
-            Product prod = new Product();
-            prod.setImage(prodImage);
-            prod.setName(prodName);
-            prod.setPrice(Integer.parseInt(prodPrice));
-            prod.setDescription(prodDesc);
-            prod.setCategory(prodCateg);
-            prod.setAvailable(1); //product added -> available
+            HttpSession mySession = request.getSession(false);
+            DatabaseHandler db = new DatabaseHandler();
             
-            System.out.println("inserted: " + new DatabaseHandler().insertNewProduct(prod));
+            ArrayList<Product> mobiles = db.getAllProducts("mobiles");
+            mySession.setAttribute("mobilesList", mobiles);
+            
+            ArrayList<Product> laptops = db.getAllProducts("laptops");
+            mySession.setAttribute("laptopsList", laptops);
+            
+            ArrayList<Product> gaming = db.getAllProducts("gaming");
+            mySession.setAttribute("gamingList", gaming);
+            
+            ArrayList<Product> headphones = db.getAllProducts("headphones");
+            mySession.setAttribute("headphonesList", headphones);
+            
+            ArrayList<User> users = db.getAllUsers();
+            mySession.setAttribute("usersList", users);
+            
+            ArrayList<CashCode> cash = db.getAllCash();
+            mySession.setAttribute("cashList", cash);
+            
+            request.getRequestDispatcher("adminHome.jsp");
         }
     }
 
