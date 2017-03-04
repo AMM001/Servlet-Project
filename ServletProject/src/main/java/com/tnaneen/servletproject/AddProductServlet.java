@@ -5,22 +5,22 @@
  */
 package com.tnaneen.servletproject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bo
+ * @author rocke
  */
-@WebServlet(name = "getAllProductsServlet", urlPatterns = {"/getAllProductsServlet"})
-public class getAllProductsServlet extends HttpServlet {
+@WebServlet(name = "AddProductServlet", urlPatterns = {"/addProductServlet"})
+public class AddProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,29 +33,29 @@ public class getAllProductsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession(true);
-        String category=null;
-        System.out.println("before request");
-        System.out.println(request.getParameter("category"));
-        if(request.getParameter("category")!=null)
-        {
-            System.out.println("hamada");
-            category=(String) request.getParameter("category");
-            session=request.getSession();
-            session.setAttribute("category", category);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+
+            String prodName = request.getParameter("prodName");
+            ServletContext context = request.getServletContext();
+            String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
+            String prodPrice = request.getParameter("prodPrice");
+            String prodDesc = request.getParameter("prodDesc");
+            //na2es el category
+           
+            System.out.println("PATH: " + prodImage);
+         
+            Product prod = new Product();
+            prod.setImage(prodImage);
+            prod.setName(prodName);
+            prod.setPrice(Integer.parseInt(prodPrice));
+            prod.setDescription(prodDesc);
+            prod.setCategory("mobiles"); //mo2akatan
+            prod.setAvailable(1); //product added -> available
+            
+            System.out.println("inserted: " + new DatabaseHandler().insertNewProduct(prod));
         }
-        else
-        {
-            category=(String) session.getAttribute("category");
-        }
-        System.out.println(category);
-        ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
-        System.out.println(products);
-        session.setAttribute("products",products);
-        response.sendRedirect("Home.jsp");
-        
-        /////////////////////////////// tst
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

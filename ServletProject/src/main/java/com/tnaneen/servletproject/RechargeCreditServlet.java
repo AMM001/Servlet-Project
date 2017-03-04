@@ -7,7 +7,6 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +16,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author bo
+ * @author mohamed
  */
-@WebServlet(name = "getAllProductsServlet", urlPatterns = {"/getAllProductsServlet"})
-public class getAllProductsServlet extends HttpServlet {
+@WebServlet(name = "RechargeCreditServlet", urlPatterns = {"/RechargeCreditServlet"})
+public class RechargeCreditServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,29 +32,49 @@ public class getAllProductsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session=request.getSession(true);
-        String category=null;
-        System.out.println("before request");
-        System.out.println(request.getParameter("category"));
-        if(request.getParameter("category")!=null)
-        {
-            System.out.println("hamada");
-            category=(String) request.getParameter("category");
-            session=request.getSession();
-            session.setAttribute("category", category);
-        }
-        else
-        {
-            category=(String) session.getAttribute("category");
-        }
-        System.out.println(category);
-        ArrayList<Product> products= new DatabaseHandler().getAllProducts(category);
-        System.out.println(products);
-        session.setAttribute("products",products);
-        response.sendRedirect("Home.jsp");
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+          
         
-        /////////////////////////////// tst
+            ////////////////// 1. get Recharging Code from Request
+            String Code =  request.getParameter("RechargingCode");
+            
+            ////////////////// 2. get User's ID from Request
+            HttpSession currentSession = request.getSession();
+            User user = (User) currentSession.getAttribute("user");
         
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            
+            ///////////////// 3. Verify code from DB
+            double cash = databaseHandler.getCash(Code);
+            
+            ////////////////////// A. if Code is Corret
+            if (cash != 0)
+            {
+                ///////////////////////////////1. Remove code from db
+                  databaseHandler.removeCash(Code);
+                  
+                ///////////////////////////////2. Update users credit in DB
+                   databaseHandler.addCredit(user.getEmail(), (int) cash);
+                   
+                //////////////////////////////3. Update users credit in SESSION
+                    user.setCreditLimit( user.getCreditLimit() + (int)cash );
+                    currentSession.removeAttribute("user");
+                    currentSession.setAttribute("user", user);
+                
+                ///////////////////////////////4.  Redirect to HomePage
+            
+                response.sendRedirect("Home.jsp");
+            
+            
+            }
+            /////////////////////// B. if Code is NOT correct
+            else
+            {
+                ///////////////////////////////////// Redirect to Home with ERROR msg
+                response.sendRedirect("Home.jsp");
+            }
+        }  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -96,5 +115,5 @@ public class getAllProductsServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+ 
 }

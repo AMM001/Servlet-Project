@@ -18,7 +18,7 @@ public class Product {
     private String description;
     private String image;
 
-    
+  
     public Product() {
         this.id = 9;
         this.name = "P";
