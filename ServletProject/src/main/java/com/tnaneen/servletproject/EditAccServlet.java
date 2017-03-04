@@ -7,7 +7,7 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author mohamed
+ * @author ehabm
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "EditAccServlet", urlPatterns = {"/EditAccServlet"})
+public class EditAccServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +33,22 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-    
-        //////////////// 1. get search key from request
-        int min = Integer.parseInt( request.getParameter("minPrice") );
-        int max = Integer.parseInt( request.getParameter("maxPrice") );
-            
-        //////////////// 2. get Current session cat. products
-        HttpSession currentSession = request.getSession();
-        ArrayList<Product> products =  (ArrayList<Product>) currentSession.getAttribute("products");
-        
-        //////////////// 3. do search according to passed key  
-        ArrayList<Product> filteredProducts = new ArrayList<>();
-        
-        for (int i=0; i<products.size(); i++)
-        {
-            if (products.get(i).getPrice() >= min && products.get(i).getPrice() <= max )
-                filteredProducts.add(   products.get(i)    );
-        }
-        System.out.println("nyhahahaa"+filteredProducts.size());
-        //////////////// 4. return search results on session
-        currentSession.setAttribute("filteredProducts", filteredProducts);
-        
-        ///////////////// 5. redirect to home page
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        String email =user.getEmail();
+        String password = request.getParameter("password");
+        String username = request.getParameter("userName");
+        String address = request.getParameter("address");
+        DatabaseHandler dbh = new DatabaseHandler();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUserName(username);
+        user.setAddress(address);
+        dbh.updateUser(user);
         response.sendRedirect("Home.jsp");
-    
+        //user.setBirthday(null);
+       
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

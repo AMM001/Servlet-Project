@@ -56,7 +56,7 @@ public class RechargeCreditServlet extends HttpServlet {
                   
                 ///////////////////////////////2. Update users credit in DB
                 System.out.println("----------"+user.getCreditLimit());
-                   databaseHandler.addCredit(user.getEmail(), (int) cash);
+                   databaseHandler.addCredit(user.getEmail(), (int)cash+user.getCreditLimit());
                    System.out.println(">>>>>>>>>"+user.getCreditLimit());
                 //////////////////////////////3. Update users credit in SESSION
                     user.setCreditLimit( user.getCreditLimit() + (int)cash );

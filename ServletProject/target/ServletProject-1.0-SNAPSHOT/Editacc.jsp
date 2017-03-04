@@ -14,19 +14,17 @@
 
 <body>
     <div class="wrapper">
-    <form class="form-signin">   
+    <form class="form-signin" method="post" action="EditAccServlet">   
 			<center>
 		<img class="img-circle" src="img/edit-.jpg"  style="width:128px;height:128px;">
 			</center>
-      <h2 class="form-signin-heading">Hi</h2>
+        <h2 class="form-signin-heading">Hi ${sessionScope.user.getEmail()}</h2>
 	  
-      <input type="text" class="form-control" name="fullName" placeholder="Fullname" required="" autofocus="" />
+        <input type="text" class="form-control" name="userName" value="${sessionScope.user.getUserName()}" required="" autofocus="" />
 	  
-      <input type="text" class="form-control" name="userName" placeholder="userName" required="" autofocus="" />
+        <input type="text" class="form-control" name="address" value="${sessionScope.user.getAddress()}" required="" autofocus="" />
 	  
-      <input type="text" class="form-control" name="Address" placeholder=" Address" required="" autofocus="" />
-	  
-      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+        <input type="password" class="form-control" name="password" value="${sessionScope.user.getPassword()}" required=""/>      
     
       <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>   
     </form>

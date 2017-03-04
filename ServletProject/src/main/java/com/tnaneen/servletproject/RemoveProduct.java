@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author mohamed
+ * @author ehabm
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "RemoveProduct", urlPatterns = {"/RemoveProduct"})
+public class RemoveProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,33 +33,30 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-    
-        //////////////// 1. get search key from request
-        int min = Integer.parseInt( request.getParameter("minPrice") );
-        int max = Integer.parseInt( request.getParameter("maxPrice") );
-            
-        //////////////// 2. get Current session cat. products
-        HttpSession currentSession = request.getSession();
-        ArrayList<Product> products =  (ArrayList<Product>) currentSession.getAttribute("products");
-        
-        //////////////// 3. do search according to passed key  
-        ArrayList<Product> filteredProducts = new ArrayList<>();
-        
-        for (int i=0; i<products.size(); i++)
+        HttpSession session=request.getSession();
+        ArrayList<CartItem> products=(ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
+        System.out.println("77777777777777777777"+request.getParameter("removeId"));
+        int removed=Integer.parseInt(request.getParameter("removeId"));
+//        for(CartItem product:products)
+//        {
+//            if(product.getProductId()==removed)
+//            {
+//                products.remove(product);
+//            }
+//        }
+        int j=0;
+        for(int i=0;i<products.size();i++)
         {
-            if (products.get(i).getPrice() >= min && products.get(i).getPrice() <= max )
-                filteredProducts.add(   products.get(i)    );
+            if(products.get(i).getProductId()==removed)
+            {
+                j=i;
+                break;
+            }
         }
-        System.out.println("nyhahahaa"+filteredProducts.size());
-        //////////////// 4. return search results on session
-        currentSession.setAttribute("filteredProducts", filteredProducts);
-        
-        ///////////////// 5. redirect to home page
-        response.sendRedirect("Home.jsp");
-    
+        products.remove(j);
+        session.setAttribute("MyShoppingCart", products);
+        response.sendRedirect("cart.jsp");
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

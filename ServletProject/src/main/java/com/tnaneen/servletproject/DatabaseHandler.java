@@ -289,7 +289,7 @@ public class DatabaseHandler {
              {
                  sum++;
                  //////////////// check which column contains my Email to get friends data
-                  CartItem cartItem = new CartItem(rs.getInt("userid"), rs.getInt("productid"),rs.getInt("quantity") , rs.getInt("bought"));
+                  CartItem cartItem = new CartItem(rs.getInt("userid"), rs.getInt("productid"),rs.getInt("quantity") , rs.getInt("bought"),rs.getString("productName"),rs.getInt("productPrice"));
                   cartItems.add(cartItem);
                
              }
@@ -410,12 +410,12 @@ public class DatabaseHandler {
     public void updateUser(User user) {
         try {
             openConnection();
-            pst = conn.prepareStatement("UPDATE ecommerce.USER SET PASSWORD=?,ADDRESS=?,USERNAME=?,BIRTHDAY=? WHERE EMAIL=?");
+            pst = conn.prepareStatement("UPDATE ecommerce.USER SET PASSWORD=?,ADDRESS=?,USERNAME=? WHERE EMAIL=?");
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
-            pst.setDate(4, (Date) user.getBirthday());
-            pst.setString(5, user.getEmail());
+            //pst.setDate(4, (Date) user.getBirthday());
+            pst.setString(4, user.getEmail());
             pst.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

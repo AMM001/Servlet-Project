@@ -1,3 +1,5 @@
+<%@page import="com.tnaneen.servletproject.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
         ustora by freshdesignweb.com
@@ -94,7 +96,7 @@
                                         -->
                                         <li><a href="logIn.jsp"><i class="fa fa-user"></i> Login</a></li>
                                         <li><a href="sign up.jsp"><i class="fa fa-user"></i> Sign up</a></li>
-                                            
+
                                     </ul>
                                 </div>
                             </div>
@@ -200,7 +202,18 @@
                                             <a href="getAllProductsServlet?category=gaming">Gaming</a>
                                             <a href="getAllProductsServlet?category=headphones">headphones</a>
                                         </div>
+                                     
                                     </div>
+                                      <div class="dropdown">
+                                      <button class="dropbtn">Prices</button>
+                                            <div class="dropdown-content">
+                                                <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
+                                                <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
+                                                <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
+                                                <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
+                                            </div>
+                                      </div>
+                                    
                                     <!--
            <li><a href="checkout.html">Checkout</a></li>
           <li><a href="single-product.html">Single product</a></li>
@@ -243,6 +256,15 @@
                                             <a href="getAllProductsServlet?category=laptops">Laptops</a>
                                             <a href="getAllProductsServlet?category=gaming">Gaming</a>
                                             <a href="getAllProductsServlet?category=headphones">headphones</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Prices</button>
+                                        <div class="dropdown-content">
+                                            <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
+                                            <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
+                                            <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
+                                            <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
                                         </div>
                                     </div>
                                     <li ><a href="cart.jsp">MyCart</a></li>		
@@ -359,24 +381,52 @@
                     <div class="col-md-12">
                         <div class="latest-product">
                             <h2 class="section-title">Products</h2>
+
                             <div class="product-carousel">
-                                <c:forEach items="${sessionScope.products}" var="product">
-                                    <div class="single-product">
-                                        <div class="product-f-image">
-                                            <img src="img/product-1.jpg" alt="">
-                                            <div class="product-hover">
-                                                <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                <c:choose>
+                                    <c:when test="${sessionScope.filteredProducts==null}" >
+                                        <% System.out.println("7amada fash5"); %>
+                                        <c:forEach items="${sessionScope.products}" var="product">
+                                            <div class="single-product">
+                                                <div class="product-f-image">
+                                                    <img src="img/product-1.jpg" alt="">
+                                                    <div class="product-hover">
+                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                    </div>
+                                                </div>
+
+                                                <h2><a href="single-product.html">${product.getName()}</a></h2>
+
+                                                <div class="product-carousel-price">
+                                                    <ins>$${product.getPrice()}</ins> <del>$100.00</del>
+                                                </div> 
                                             </div>
-                                        </div>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <% System.out.println("7amada fash5 tenen"+((ArrayList<Product>) session.getAttribute("filteredProducts")).size()); %>
+                                        <c:forEach items="${sessionScope.filteredProducts}" var="product">
+                                            
+                                            <div class="single-product">
+                                                <div class="product-f-image">
+                                                    <img src="img/product-1.jpg" alt="">
+                                                    <div class="product-hover">
+                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                    </div>
+                                                </div>
 
-                                        <h2><a href="single-product.html">${product.getName()}</a></h2>
+                                                <h2><a href="single-product.html">${product.getName()}</a></h2>
 
-                                        <div class="product-carousel-price">
-                                            <ins>$${product.getPrice()}</ins> <del>$100.00</del>
-                                        </div> 
-                                    </div>
-                                </c:forEach>
+                                                <div class="product-carousel-price">
+                                                    <ins>$${product.getPrice()}</ins> <del>$100.00</del>
+                                                </div> 
+                                            </div>
+                                        </c:forEach> 
+                                            <% session.removeAttribute("filteredProducts"); %>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                     </div>

@@ -191,10 +191,12 @@
                                                 <th class="product-subtotal">Total</th>
                                             </tr>
                                         </thead>
+                                        <%int total=0; %>
                                         <c:forEach items="${sessionScope.MyShoppingCart}" var="cartItem" >
+                                            <%--<% total+=Integer.parseInt(request.getParameter("productPrice")); %>--%>
                                             <tr class="cart_item">
                                                 <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="#">remove</a> 
+                                                    <a title="Remove this item" class="remove" href="RemoveProduct?removeId=${cartItem.getProductId()}">remove</a> 
                                                 </td>
 
                                                 <td class="product-thumbnail">
@@ -202,11 +204,11 @@
                                                 </td>
 
                                                 <td class="product-name">
-                                                    <a href="single-product.html">${cartItem.getProductId()}</a> 
+                                                    <a href="single-product.html">${cartItem.getProductName()}</a> 
                                                 </td>
 
                                                 <td class="product-price">
-                                                    <span class="amount">£15.00</span> 
+                                                    <span class="amount">$${cartItem.getProductPrice()}</span> 
                                                 </td>
 
                                                 <td class="product-quantity">
@@ -219,14 +221,16 @@
                                                 </td>
 
                                                 <td class="product-subtotal">
-                                                    <span class="amount">${15*cartItem.getQuantity()}</span> 
+                                                    <span class="amount">${cartItem.getProductPrice()*cartItem.getQuantity()}</span> 
                                                 </td>
                                             </tr>
+                                            
                                         </c:forEach>
                                         <tr>
                                             <td class="actions" colspan="6">
 
-                                                <input type="submit" value="Save" name="save" class="button">
+                                                <%--  <input type="submit" value="Save" name="save" class="button"> --%>
+  
                                                 <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
                                             </td>
                                         </tr>
@@ -234,6 +238,7 @@
                                         </tbody>
                                     </table>
                                 </form>
+                                                <a href="#" class="button" value="Save">Save</a>
 
                                 <div class="cart-collaterals">
 
@@ -244,11 +249,6 @@
 
                                         <table cellspacing="0">
                                             <tbody>
-                                                <tr class="cart-subtotal">
-                                                    <th>Cart Subtotal</th>
-                                                    <td><span class="amount">£15.00</span></td>
-                                                </tr>
-
                                                 <tr class="shipping">
                                                     <th>Shipping and Handling</th>
                                                     <td>Free Shipping</td>
@@ -256,7 +256,7 @@
 
                                                 <tr class="order-total">
                                                     <th>Order Total</th>
-                                                    <td><strong><span class="amount">£15.00</span></strong> </td>
+                                                    <td><strong><span class="amount"><% out.println(total); %></span></strong> </td>
                                                 </tr>
                                             </tbody>
                                         </table>
