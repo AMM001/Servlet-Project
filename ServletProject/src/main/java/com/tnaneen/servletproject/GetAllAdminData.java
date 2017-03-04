@@ -54,8 +54,8 @@ public class GetAllAdminData extends HttpServlet {
             ArrayList<User> users = db.getAllUsers();
             mySession.setAttribute("usersList", users);
             
-            //ArrayList<CashCard> cash = db.getAllCashCards();
-            //mySession.setAttribute("cardsList", cash);
+            ArrayList<CashCode> cash = db.getAllCash();
+            mySession.setAttribute("cashList", cash);
             
             request.getRequestDispatcher("adminHome.jsp");
         }

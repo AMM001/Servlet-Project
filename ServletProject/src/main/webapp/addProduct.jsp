@@ -87,17 +87,15 @@
                 <input type="text" class="form-control" name="prodDesc" placeholder="Description" required="" autofocus="" />
                 
                 <!--TODO: specify a name attribute-->
-                <center><label>Category</label></center>
+                <center><label>Category</label>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle form-control" type="button" data-toggle="dropdown">Category
-                    <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                      <li>Mobiles</li>
-                      <li>Laptops</li>
-                      <li>Gaming</li>
-                      <li>Headphones</li>
-                    </ul>
-                </div> 
+                    <select name="category">
+                        <option value="mobiles">Mobiles</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="gaming">Gaming</option>
+                        <option value="headphones">Headphones</option>
+                    </select>
+                </div></center>
                 <br><br>
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
