@@ -307,22 +307,32 @@ public class DatabaseHandler {
     
      ///// ---- remove a cartItem 
     public boolean removeCartItem( CartItem cartItem ) {
+           try {
+                openConnection();
        
-        //////////// Delayed because of some future issues 3shan ana bnaaaaaaaaam :)
-        /////////// will be discussed BOKRA in shaa ALLAH ... 27/2/2017
-        
-        
-        ////////// Main key points are :
-        //////////////// 1. Which to remove? bought=0 Or bought=1
-        //////////////// 2. what about when a Single user orders' history
-        ////////////////    "if he bought two different Orders using two differnt carts sequentaially
-        ///////////////////    then they will be stored all as a sing order from a single shopping cart
-        
-        ////////// for example: Ehab have a cart, then he bought all cart items >> so all those items will marked as bought in db >> b=1
-        ///////////   if ehab came after that and filled a new cart and tried to buy it >> then these new products also will be b=1  
-        ////////////// and if he tried to view his history >> then all products will be seen as a SINGLE oreder !
-        return false;
+                pst = conn.prepareStatement("DELETE from ecommerce.shoppingcart WHERE userid=? and productid = ? and bought=0");
+                pst.setInt(1, cartItem.getUserId());
+                pst.setInt(1, cartItem.getProductId());
+                
+                int queryResult = pst.executeUpdate();
+                
+                if (queryResult != 0)
+                {
+                    System.out.println(" CartItem  deleted  Successfully");
+                    return true;
+                }
               
+            } catch (SQLException ex) {
+                
+                System.err.println("ERROR:: DatabaseHandler.removeCartItem()" + ex.toString());
+                
+            } finally {
+                closeConnection();
+            }
+            
+            System.out.println("CartItem is NOT deleted!");
+            return false;
+               
     }
 
     ////////////////////// End of -- CART -- processing ////////////////////////
