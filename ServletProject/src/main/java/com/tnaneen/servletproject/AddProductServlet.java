@@ -42,6 +42,7 @@ public class AddProductServlet extends HttpServlet {
             String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
             String prodPrice = request.getParameter("prodPrice");
             String prodDesc = request.getParameter("prodDesc");
+            String prodCateg = request.getParameter("category");
             //na2es el category
            
             System.out.println("PATH: " + prodImage);
@@ -51,7 +52,7 @@ public class AddProductServlet extends HttpServlet {
             prod.setName(prodName);
             prod.setPrice(Integer.parseInt(prodPrice));
             prod.setDescription(prodDesc);
-            prod.setCategory("mobiles"); //mo2akatan
+            prod.setCategory(prodCateg);
             prod.setAvailable(1); //product added -> available
             
             System.out.println("inserted: " + new DatabaseHandler().insertNewProduct(prod));
