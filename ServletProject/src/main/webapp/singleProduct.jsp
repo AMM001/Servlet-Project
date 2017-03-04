@@ -203,6 +203,7 @@
                                                     <h1>${param.productName}</h1>
                                                     <h2>Product Description</h2>  
                                                     <p>${param.productDesc}</p>
+                                                    <img src="${param.productImage}" width="100px" height="auto">
                                                     <P style="color:steelblue;">$${param.productPrice}</P>
                                                 </div>
 

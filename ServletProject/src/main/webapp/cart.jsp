@@ -114,7 +114,7 @@
                     </div>			
                     <div class="col-sm-6">
                         <div class="shopping-item">
-                            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i></a>
+                            <a href="cart.html">Cash - <span class="cart-amunt">$${sessionScope.user.getCreditLimit()}</span> <i class="fa fa-shopping-cart"></i></a>
                         </div>
                     </div>			
                 </div>
@@ -179,7 +179,7 @@
                     <div class="col-md-8">
                         <div class="product-content-right">
                             <div class="woocommerce">
-                                <form method="post" action="#">
+                                <form method="post" action="BuyServlet">
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
@@ -239,7 +239,17 @@
                                     </table>
                                 </form>
                                                 <a href="#" class="button" value="Save">Save</a>
-
+                                                <c:if test="${param.outOfStock==true}" >
+                                              
+                                                    <c:forEach items="${sessionScope.outOfStockProducts}" var="item">
+                                                            <h2 style="color:red;">${item.getProductName()} out of stock by ${item.getQuantity()} </h2>
+                                                    </c:forEach>
+                                                    <% session.removeAttribute("outOfStock");%>
+                                                 </c:if>
+                                                    <c:if test="${param.notEnoughMoney==true}" >
+                                                        <h1 style="color:red;">You dont have enough money loser</h1>
+                                                        
+                                                    </c:if>
                                 <div class="cart-collaterals">
 
 
