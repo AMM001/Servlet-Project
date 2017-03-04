@@ -366,7 +366,7 @@
                                             <img src="img/product-1.jpg" alt="">
                                             <div class="product-hover">
                                                 <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productImage=${product.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
