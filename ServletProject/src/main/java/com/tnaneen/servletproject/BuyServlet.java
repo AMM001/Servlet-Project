@@ -150,6 +150,20 @@ public class BuyServlet extends HttpServlet {
                             
                         //////////////////////////////////////// 6. redirect to HOME page "POSITIVE response"
                             session.setAttribute("buyCompleted", true);
+                            System.out.println("ana hena da5el 3la index");
+                            response.sendRedirect("index.jsp");
+                        
+                        }
+                        ///////////////////////////////// b. NO doesn't afford the payment, then redirect to home with NEGATIVE response
+                        else{
+                            System.out.println("ana hena da5el 3la cart");
+                               response.sendRedirect("cart.jsp?notEnoughMoney=true");
+                        }
+                    }
+                    else
+                    {
+                        /////////////////// 2-c. SOME requested products are OUT OF STOCK
+                        System.out.println("ana hena da5el 3la cart bs rewsh");
                         session.setAttribute("outOfStockProducts", outOfStockPs);
                         response.sendRedirect("cart.jsp?outOfStock=true");
                 
@@ -209,17 +223,3 @@ public class BuyServlet extends HttpServlet {
     }// </editor-fold>
 
 }
-                            System.out.println("ana hena da5el 3la index");
-                            response.sendRedirect("index.jsp");
-                        
-                        }
-                        ///////////////////////////////// b. NO doesn't afford the payment, then redirect to home with NEGATIVE response
-                        else{
-                            System.out.println("ana hena da5el 3la cart");
-                               response.sendRedirect("cart.jsp?notEnoughMoney=true");
-                        }
-                    }
-                    else
-                    {
-                        /////////////////// 2-c. SOME requested products are OUT OF STOCK
-                        System.out.println("ana hena da5el 3la cart bs rewsh");
