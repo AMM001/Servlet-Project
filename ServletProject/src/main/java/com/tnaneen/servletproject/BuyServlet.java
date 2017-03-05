@@ -67,6 +67,7 @@ public class BuyServlet extends HttpServlet {
                         Product currentInDb = productsAvailability.get(j);
                         if (currentInCart.getQuantity() > currentInDb.getAvailable() )
                         {
+                            currentInCart.setQuantity(    currentInCart.getQuantity() - currentInDb.getAvailable()  );
                             outOfStockPs.add(currentInCart);
                         }
                     }
@@ -87,7 +88,7 @@ public class BuyServlet extends HttpServlet {
                             
                         }
                     /////////////////////////// 4. check if user's CREDIT can afford bill payment
-                        User currentUser = (User) session.getAttribute("User");
+                        User currentUser = (User) session.getAttribute("user");
                         
                         if (currentUser.getCreditLimit() >= totalPayment)
                         {
@@ -107,6 +108,7 @@ public class BuyServlet extends HttpServlet {
                             {
                                 CartItem cartItem = myCart.get(i);
                                 cartItem.setBought(1);
+                                System.out.println("<><><><   "+ cartItem.getQuantity());
                                 myNewCart.add(cartItem);
                             }
 
@@ -126,7 +128,8 @@ public class BuyServlet extends HttpServlet {
                             
                             //////////////////////////////////////// 5. (f) Update user's CASH CREDIT in Database
                             databaseHandler.updateUser(currentUser);
-                            
+                            databaseHandler.addCredit(currentUser.getEmail(), currentUser.getCreditLimit());
+                            System.out.println("user updated888888888");
                             //////////////////////////////////////// 5. (g) Update products' QUANTITY in DB and SESSION
                             
                             /// EHAB:: Home will be reloaded with new fresh product info :: EHAB
@@ -147,17 +150,20 @@ public class BuyServlet extends HttpServlet {
                             
                         //////////////////////////////////////// 6. redirect to HOME page "POSITIVE response"
                             session.setAttribute("buyCompleted", true);
+                            System.out.println("ana hena da5el 3la index");
                             response.sendRedirect("index.jsp");
                         
                         }
                         ///////////////////////////////// b. NO doesn't afford the payment, then redirect to home with NEGATIVE response
                         else{
+                            System.out.println("ana hena da5el 3la cart");
                                response.sendRedirect("cart.jsp?notEnoughMoney=true");
                         }
                     }
                     else
                     {
                         /////////////////// 2-c. SOME requested products are OUT OF STOCK
+                        System.out.println("ana hena da5el 3la cart bs rewsh");
                         session.setAttribute("outOfStockProducts", outOfStockPs);
                         response.sendRedirect("cart.jsp?outOfStock=true");
                 

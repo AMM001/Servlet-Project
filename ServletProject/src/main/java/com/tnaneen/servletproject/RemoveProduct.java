@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ehabm
  */
-@WebServlet(name = "logoutServlet", urlPatterns = {"/logoutServlet"})
-public class logoutServlet extends HttpServlet {
+@WebServlet(name = "RemoveProduct", urlPatterns = {"/RemoveProduct"})
+public class RemoveProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +33,29 @@ public class logoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        DatabaseHandler db = new DatabaseHandler();
-        ArrayList<CartItem> shoppingCart = (ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
-        if (shoppingCart != null) {
-            for (CartItem item : shoppingCart) {
-                db.insertNewCartItem(item);
+        HttpSession session=request.getSession();
+        ArrayList<CartItem> products=(ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
+        System.out.println("77777777777777777777"+request.getParameter("removeId"));
+        int removed=Integer.parseInt(request.getParameter("removeId"));
+//        for(CartItem product:products)
+//        {
+//            if(product.getProductId()==removed)
+//            {
+//                products.remove(product);
+//            }
+//        }
+        int j=0;
+        for(int i=0;i<products.size();i++)
+        {
+            if(products.get(i).getProductId()==removed)
+            {
+                j=i;
+                break;
             }
         }
-
-        response.sendRedirect("Home.jsp");
+        products.remove(j);
+        session.setAttribute("MyShoppingCart", products);
+        response.sendRedirect("cart.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -51,7 +51,7 @@ public class SearchServlet extends HttpServlet {
             if (products.get(i).getPrice() >= min && products.get(i).getPrice() <= max )
                 filteredProducts.add(   products.get(i)    );
         }
-        
+        System.out.println("nyhahahaa"+filteredProducts.size());
         //////////////// 4. return search results on session
         currentSession.setAttribute("filteredProducts", filteredProducts);
         

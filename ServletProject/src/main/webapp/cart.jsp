@@ -114,7 +114,7 @@
                     </div>			
                     <div class="col-sm-6">
                         <div class="shopping-item">
-                            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i></a>
+                            <a href="cart.html">Cash - <span class="cart-amunt">$${sessionScope.user.getCreditLimit()}</span> <i class="fa fa-shopping-cart"></i></a>
                         </div>
                     </div>			
                 </div>
@@ -138,16 +138,7 @@
                         <ul class="nav navbar-nav">
                             <li ><a href="Home.jsp">Home</a></li>
 
-                            <div class="dropdown">
-                                <button class="dropbtn">Categories</button>
-                                <div class="dropdown-content">
-                                    <a href="#">Mobile phone</a>
-                                    <a href="#">Laptops</a>
-                                    <a href="#">Gaming</a>
-                                    <a href="#">headphones</a>
-
-                                </div>
-                            </div>
+                        
                             <li class="active"><a href="cart.html">MyCart</a></li>		
                             <!--
    <li><a href="checkout.html">Checkout</a></li>
@@ -188,7 +179,7 @@
                     <div class="col-md-8">
                         <div class="product-content-right">
                             <div class="woocommerce">
-                                <form method="post" action="#">
+                                <form method="post" action="BuyServlet">
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
@@ -200,10 +191,12 @@
                                                 <th class="product-subtotal">Total</th>
                                             </tr>
                                         </thead>
+                                        <%int total=0; %>
                                         <c:forEach items="${sessionScope.MyShoppingCart}" var="cartItem" >
+                                            <%--<% total+=Integer.parseInt(request.getParameter("productPrice")); %>--%>
                                             <tr class="cart_item">
                                                 <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="#">remove</a> 
+                                                    <a title="Remove this item" class="remove" href="RemoveProduct?removeId=${cartItem.getProductId()}">remove</a> 
                                                 </td>
 
                                                 <td class="product-thumbnail">
@@ -211,11 +204,11 @@
                                                 </td>
 
                                                 <td class="product-name">
-                                                    <a href="single-product.html">${cartItem.getProductId()}</a> 
+                                                    <a href="single-product.html">${cartItem.getProductName()}</a> 
                                                 </td>
 
                                                 <td class="product-price">
-                                                    <span class="amount">£15.00</span> 
+                                                    <span class="amount">$${cartItem.getProductPrice()}</span> 
                                                 </td>
 
                                                 <td class="product-quantity">
@@ -228,14 +221,16 @@
                                                 </td>
 
                                                 <td class="product-subtotal">
-                                                    <span class="amount">${15*cartItem.getQuantity()}</span> 
+                                                    <span class="amount">${cartItem.getProductPrice()*cartItem.getQuantity()}</span> 
                                                 </td>
                                             </tr>
+                                            
                                         </c:forEach>
                                         <tr>
                                             <td class="actions" colspan="6">
 
-                                                <input type="submit" value="Save" name="save" class="button">
+                                                <%--  <input type="submit" value="Save" name="save" class="button"> --%>
+  
                                                 <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
                                             </td>
                                         </tr>
@@ -243,7 +238,18 @@
                                         </tbody>
                                     </table>
                                 </form>
-
+                                                <a href="#" class="button" value="Save">Save</a>
+                                                <c:if test="${param.outOfStock==true}" >
+                                              
+                                                    <c:forEach items="${sessionScope.outOfStockProducts}" var="item">
+                                                            <h2 style="color:red;">${item.getProductName()} out of stock by ${item.getQuantity()} </h2>
+                                                    </c:forEach>
+                                                    <% session.removeAttribute("outOfStock");%>
+                                                 </c:if>
+                                                    <c:if test="${param.notEnoughMoney==true}" >
+                                                        <h1 style="color:red;">You dont have enough money loser</h1>
+                                                        
+                                                    </c:if>
                                 <div class="cart-collaterals">
 
 
@@ -253,11 +259,6 @@
 
                                         <table cellspacing="0">
                                             <tbody>
-                                                <tr class="cart-subtotal">
-                                                    <th>Cart Subtotal</th>
-                                                    <td><span class="amount">£15.00</span></td>
-                                                </tr>
-
                                                 <tr class="shipping">
                                                     <th>Shipping and Handling</th>
                                                     <td>Free Shipping</td>
@@ -265,7 +266,7 @@
 
                                                 <tr class="order-total">
                                                     <th>Order Total</th>
-                                                    <td><strong><span class="amount">£15.00</span></strong> </td>
+                                                    <td><strong><span class="amount"><% out.println(total); %></span></strong> </td>
                                                 </tr>
                                             </tbody>
                                         </table>

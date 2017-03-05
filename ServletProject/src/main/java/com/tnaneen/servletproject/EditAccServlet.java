@@ -7,7 +7,7 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ehabm
  */
-@WebServlet(name = "logoutServlet", urlPatterns = {"/logoutServlet"})
-public class logoutServlet extends HttpServlet {
+@WebServlet(name = "EditAccServlet", urlPatterns = {"/EditAccServlet"})
+public class EditAccServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +33,21 @@ public class logoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.removeAttribute("user");
-        DatabaseHandler db = new DatabaseHandler();
-        ArrayList<CartItem> shoppingCart = (ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
-        if (shoppingCart != null) {
-            for (CartItem item : shoppingCart) {
-                db.insertNewCartItem(item);
-            }
-        }
-
+        HttpSession session=request.getSession();
+        User user=(User) session.getAttribute("user");
+        String email =user.getEmail();
+        String password = request.getParameter("password");
+        String username = request.getParameter("userName");
+        String address = request.getParameter("address");
+        DatabaseHandler dbh = new DatabaseHandler();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUserName(username);
+        user.setAddress(address);
+        dbh.updateUser(user);
         response.sendRedirect("Home.jsp");
+        //user.setBirthday(null);
+       
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

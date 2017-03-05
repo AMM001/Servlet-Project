@@ -55,8 +55,9 @@ public class RechargeCreditServlet extends HttpServlet {
                   databaseHandler.removeCash(Code);
                   
                 ///////////////////////////////2. Update users credit in DB
-                   databaseHandler.addCredit(user.getEmail(), (int) cash);
-                   
+                System.out.println("----------"+user.getCreditLimit());
+                   databaseHandler.addCredit(user.getEmail(), (int)cash+user.getCreditLimit());
+                   System.out.println(">>>>>>>>>"+user.getCreditLimit());
                 //////////////////////////////3. Update users credit in SESSION
                     user.setCreditLimit( user.getCreditLimit() + (int)cash );
                     currentSession.removeAttribute("user");

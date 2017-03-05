@@ -40,6 +40,7 @@ public class CheckIfLoggedIn extends HttpServlet {
          
         ////////// 2. check if Session have a user loggedin
         ///////////// A. if user is Logged in 
+        
        
         User user = (User) currentSession.getAttribute("user");
         if (user != null)
@@ -47,13 +48,15 @@ public class CheckIfLoggedIn extends HttpServlet {
             ArrayList<CartItem> shoppingCart = (ArrayList<CartItem>) currentSession.getAttribute("MyShoppingCart");
         
             int productID = Integer.parseInt( request.getParameter("selectedProduct") );
-              
+            String productName=request.getParameter("productName");
+            int productPrice=Integer.parseInt(request.getParameter("productPrice"));
+            
             if (shoppingCart != null)
             {
             //////////////////////// a. chack if he have a cart "NOT-NULL"
               ///////////////////////// 1. check if this product is already in cart
                 
-                CartItem selectedProduct = null;
+            CartItem selectedProduct = null;    
                 
                 for (int i=0; i<shoppingCart.size(); i++)
                 {
@@ -85,7 +88,7 @@ public class CheckIfLoggedIn extends HttpServlet {
                 ///////////////////////// NO its the first time to add this product to cart
                 else{
                     ////// 1. create cartItem Obj
-                    CartItem item = new CartItem(user.getId(), productID, 1, 0);
+                    CartItem item = new CartItem(user.getId(), productID, 1, 0,productName,productPrice);
                     
                     ///// 2. add it to shppingList
                     shoppingCart.add(item);
@@ -107,7 +110,7 @@ public class CheckIfLoggedIn extends HttpServlet {
                     ArrayList<CartItem> newShoppingCart = new ArrayList<>();
                     
                     ////  2. append new item 
-                    CartItem item = new CartItem(user.getId(),productID, 1, 0);
+                    CartItem item = new CartItem(user.getId(),productID, 1, 0,productName,productPrice);
                     newShoppingCart.add(item);
                      System.out.println("ProductID = "+ item.getProductId() + ">> Q="+item.getQuantity());
                   
