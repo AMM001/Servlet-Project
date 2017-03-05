@@ -77,6 +77,26 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
     </head>
     <body>
@@ -138,7 +158,7 @@
                         <ul class="nav navbar-nav">
                             <li ><a href="Home.jsp">Home</a></li>
 
-                        
+
                             <li class="active"><a href="cart.html">MyCart</a></li>		
                             <!--
    <li><a href="checkout.html">Checkout</a></li>
@@ -191,7 +211,7 @@
                                                 <th class="product-subtotal">Total</th>
                                             </tr>
                                         </thead>
-                                        <%int total=0; %>
+                                        <%int total = 0; %>
                                         <c:forEach items="${sessionScope.MyShoppingCart}" var="cartItem" >
                                             <%--<% total+=Integer.parseInt(request.getParameter("productPrice")); %>--%>
                                             <tr class="cart_item">
@@ -224,13 +244,13 @@
                                                     <span class="amount">${cartItem.getProductPrice()*cartItem.getQuantity()}</span> 
                                                 </td>
                                             </tr>
-                                            
+
                                         </c:forEach>
                                         <tr>
                                             <td class="actions" colspan="6">
 
                                                 <%--  <input type="submit" value="Save" name="save" class="button"> --%>
-  
+
                                                 <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
                                             </td>
                                         </tr>
@@ -238,18 +258,24 @@
                                         </tbody>
                                     </table>
                                 </form>
-                                                <a href="#" class="button" value="Save">Save</a>
-                                                <c:if test="${param.outOfStock==true}" >
-                                              
-                                                    <c:forEach items="${sessionScope.outOfStockProducts}" var="item">
-                                                            <h2 style="color:red;">${item.getProductName()} out of stock by ${item.getQuantity()} </h2>
-                                                    </c:forEach>
-                                                    <% session.removeAttribute("outOfStock");%>
-                                                 </c:if>
-                                                    <c:if test="${param.notEnoughMoney==true}" >
-                                                        <h1 style="color:red;">You dont have enough money loser</h1>
-                                                        
-                                                    </c:if>
+                                <a href="#" class="button" value="Save">Save</a>
+                                <c:if test="${param.outOfStock==true}" >
+
+                                    <c:forEach items="${sessionScope.outOfStockProducts}" var="item">
+                                        <div class="alert">
+                                            <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                            <strong>Sorry!</strong> ${item.getProductName()} out of stock by ${item.getQuantity()} 
+                                        </div>
+
+                                    </c:forEach>
+                                    <% session.removeAttribute("outOfStock");%>
+                                </c:if>
+                                <c:if test="${param.notEnoughMoney==true}" >
+                                    <div class="alert">
+                                        <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                                        <strong>Sorry!</strong> You don't have enough money
+                                    </div>
+                                </c:if>
                                 <div class="cart-collaterals">
 
 
@@ -266,7 +292,7 @@
 
                                                 <tr class="order-total">
                                                     <th>Order Total</th>
-                                                    <td><strong><span class="amount"><% out.println(total); %></span></strong> </td>
+                                                    <td><strong><span class="amount"><% out.println(total);%></span></strong> </td>
                                                 </tr>
                                             </tbody>
                                         </table>

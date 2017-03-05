@@ -1,9 +1,4 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--
-        ustora by freshdesignweb.com
-        Twitter: https://twitter.com/freshdesignweb
-        URL: https://www.freshdesignweb.com/ustora/
--->
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -103,36 +98,67 @@
                <div class="row">
                    <div class="col-sm-6">
                        <div class="logo">
-                           <h1><a href="Home.jsp"><img src="img/logo.png"></a></h1>
+                           <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
                        </div>
                    </div>						
                </div>
            </div>
        </div> <!-- End site branding area -->
        
-       <div style="display:inline-block; width: 33%; text-align: center;">
-            <h3>Statistics</h3>
+      
+		
+		
+		 <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                          <div style="display:inline-block; width: 33%; text-align: center;"  >
+							<i><h2 style="font-size: 30px;">Statistics</h2></i>
+						</div>
+						<div style="display:inline-block; width: 33%; text-align: center;">
+                                                    <h3>${sessionScope.usersNum} User</h3>
+							</div>
+						<div style="display:inline-block; width: 33%; text-align: center;">
+                                                    <h3>${sessionScope.productsNum} Product</h3>
+						</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="display:inline-block; width: 33%; text-align: center;">
-            <h3># of Users</h3>
-        </div>
-        <div style="display:inline-block; width: 33%; text-align: center;">
-            <h3># of Products</h3>
-        </div>
+    </div>
        
        
         <!--TODO: css classes lel divs-->
         <center>
             <div style="padding:50px">
-                 <h2><a href="viewUsers.jsp">Users</a></h2>
+                 <h2><a href="viewUsers.jsp" class="fa fa-user"> Users</a></h2>
+			
              </div> 
             <div style="padding:50px">
-                <h2><a href="addProcuts.jsp">Products</a></h2>
+                <h2><a href="addProduct.jsp" class="fa fa-tachometer">Products</a></h2>
+				 
              </div>
+			
              <div style="padding:50px">
-                <h2><a href="addCards.jsp">Cash Cards<i class="fa fa-shopping-cart"></i></a></h2>
+                <h2><a href="addCards.jsp" class="fa fa-shopping-cart">Cash Cards<i ></i></a></h2>
              </div>
         </center>
+		
+		
+         <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; Coded with ♥. </p>
+                    </div>
+                </div>
+                
+         
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
 
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>

@@ -67,7 +67,7 @@ public class registerServlet extends HttpServlet {
         }
         else
         {
-            response.sendRedirect("sign up.jsp");
+            response.sendRedirect("sign up.jsp?cantsign=true");
         }
     }
 

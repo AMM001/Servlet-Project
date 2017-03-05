@@ -1,4 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--
         ustora by freshdesignweb.com
         Twitter: https://twitter.com/freshdesignweb
@@ -34,12 +35,58 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+
+
+
+        <style>
+            .dropbtn {
+                background-color: #F7FDF9;
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown-content a:hover {background-color: #5A87CA}
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #5A87CA;
+            }
+        </style>
+
+
     </head>
     <body>
-        
+
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
-        
+
         <div class="header-area">
             <div class="container">
                 <div class="row">
@@ -56,107 +103,222 @@
         </div> <!-- End header area -->
 
         <!--with Log in-->
-       <div class="site-branding-area">
-           <div class="container">
-               <div class="row">
-                   <div class="col-sm-6">
-                       <div class="logo">
-                           <h1><a href="Home.jsp"><img src="img/logo.png"></a></h1>
-                       </div>
-                   </div>						
-               </div>
-           </div>
-       </div> <!-- End site branding area -->
-       
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="adminHome.html"><img src="img/logo.png"></a></h1>
+                        </div>
+                    </div>						
+                </div>
+            </div>
+        </div> <!-- End site branding area -->
+
+
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <h1>Add New Products</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="wrapper">
             <div style="text-align: center;">
-                <h3>Add New Products</h3>
+
             </div>
             <form class="form-signin" method="post" action="addProductServlet">   
-                
+
                 <center><label>Image</label></center>
                 <input type="file" name="prodImage" accept="image/*" class="form-control">
-                
+
                 <center><label>Name</label></center>
                 <input type="text" class="form-control" name="prodName" placeholder="Name" required="" autofocus="" />
-                
+
                 <center><label>Price</label></center>
                 <input type="text" class="form-control" name="prodPrice" placeholder="Price" required=""/>   
-                
+
                 <center><label>Description</label></center>
                 <input type="text" class="form-control" name="prodDesc" placeholder="Description" required="" autofocus="" />
-                
+
                 <!--TODO: specify a name attribute-->
-                <center><label>Category</label>
-                <div class="dropdown">
-                    <select name="category">
-                        <option value="mobiles">Mobiles</option>
-                        <option value="laptops">Laptops</option>
-                        <option value="gaming">Gaming</option>
-                        <option value="headphones">Headphones</option>
-                    </select>
-                </div></center>
+                <center><label >Category</label>
+                    <div class="dropdown">
+                        <select name="category" >
+                            <option value="mobiles">Mobiles</option>
+                            <option value="laptops">Laptops</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="headphones">Headphones</option>
+                        </select>
+                    </div></center>
                 <br><br>
-                
+
+
+                <br><br>
+
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
                 <button class="btn btn-lg btn-primary btn-block">Cancel</button> 
             </form>
         </div>
-       
-       <div class="slider-area">
-            <!-- Slider -->
-            <div class="block-slider block-slider4">
-                <ul class="" id="bxslider-home4">
-                    <!--for loop bte3red el cards-->
-                    <li>
-                        <img src="img/h4-slide.png" alt="Slide">
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                iPhone <span class="primary">6 <strong>Plus</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">Dual SIM</h4>
-                            <!--
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            -->
+
+
+
+        <div class="maincontent-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="latest-product">
+                            <h2 class="section-title">Mobiles</h2>
+                            <div class="product-carousel">
+                                <c:forEach items="${sessionScope.mobilesList}" var="mobile">
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="img/product-1.jpg" alt="">
+                                            <div class="product-hover">
+                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            </div>
+                                        </div>
+
+                                        <h2><a href="">${mobile.getName()}</a></h2>
+
+                                        <div class="product-carousel-price">
+                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                        </div> 
+                                    </div>
+                                </c:forEach>
+                            </div>
                         </div>
-                    </li>
-                    <li><img src="img/h4-slide2.png" alt="Slide">
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                by one, get one <span class="primary">50% <strong>off</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">school supplies & backpacks.*</h4>
-                            <!--
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            -->
-                        </div>
-                    </li>
-                    <li><img src="img/h4-slide3.png" alt="Slide">
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                Apple <span class="primary">Store <strong>Ipod</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">Select Item</h4>
-                            <!--
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            -->
-                        </div>
-                    </li>
-                    <li><img src="img/h4-slide4.png" alt="Slide">
-                        <div class="caption-group">
-                            <h2 class="caption title">
-                                Apple <span class="primary">Store <strong>Ipod</strong></span>
-                            </h2>
-                            <h4 class="caption subtitle">& Phone</h4>
-                            <!--
-                            <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
-                            -->
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
-            <!-- ./Slider -->
-        </div> <!-- End slider area -->
+        </div> <!-- End main content area -->
+
+        <div class="maincontent-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="latest-product">
+                            <h2 class="section-title">Laptops</h2>
+                            <div class="product-carousel">
+                                <c:forEach items="${sessionScope.laptopsList}" var="mobile">
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="img/product-1.jpg" alt="">
+                                            <div class="product-hover">
+                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            </div>
+                                        </div>
+
+                                        <h2><a href="">${mobile.getName()}</a></h2>
+
+                                        <div class="product-carousel-price">
+                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                        </div> 
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End main content area -->
+
+
+        <div class="maincontent-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="latest-product">
+                            <h2 class="section-title">Gaming</h2>
+                            <div class="product-carousel">
+                                <c:forEach items="${sessionScope.gamingList}" var="mobile">
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="img/product-1.jpg" alt="">
+                                            <div class="product-hover">
+                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            </div>
+                                        </div>
+
+                                        <h2><a href="">${mobile.getName()}</a></h2>
+
+                                        <div class="product-carousel-price">
+                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                        </div> 
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End main content area -->
+
+
+
+
+        <div class="maincontent-area">
+
+
+
+            <div class="maincontent-area">
+                <div class="zigzag-bottom"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="latest-product">
+                                <h2 class="section-title">Headphones</h2>
+                                <div class="product-carousel">
+                                    <c:forEach items="${sessionScope.headphonesList}" var="mobile">
+                                        <div class="single-product">
+                                            <div class="product-f-image">
+                                                <img src="img/product-1.jpg" alt="">
+                                                <div class="product-hover">
+                                                    <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                    <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                </div>
+                                            </div>
+
+                                            <h2><a href="">${mobile.getName()}</a></h2>
+
+                                            <div class="product-carousel-price">
+                                                <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                            </div> 
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End main content area -->
+        </div>
+
+        <div class="footer-bottom-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="copyright">
+                            <p>&copy; Coded with ♥. </p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div> <!-- End footer bottom area -->
+
 
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>

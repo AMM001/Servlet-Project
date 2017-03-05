@@ -38,35 +38,38 @@ public class loginServlet extends HttpServlet {
         RequestDispatcher rd = request.getRequestDispatcher("getAllProductsServlet");
         DatabaseHandler db = new DatabaseHandler();
         User exists = db.getUser(email, password);
-
+        HttpSession session = request.getSession(true);
+        
         if (exists != null) {
             //redirect to home
-            HttpSession session = request.getSession(true);
-            if (session.getAttribute("addingToCart") !=null) {
-            
-                Integer productID = (int) session.getAttribute("productId");
-            
-                session.setAttribute("user", exists);
-                session.setAttribute("category", "mobiles");
-                session.removeAttribute("addingToCart");
-                session.removeAttribute("productId");
-                //response.sendRedirect("Home.jsp");
-                System.out.println("i am from add to cart");
-                 response.sendRedirect("CheckIfLoggedIn?selectedProduct="+productID);
+            if (exists.getIsAdmin() == 0) {
+                if (session.getAttribute("addingToCart") != null) {
+                    
+                    Integer productID = (int) session.getAttribute("productId");
+                    
+                    session.setAttribute("user", exists);
+                    session.setAttribute("category", "mobiles");
+                    session.removeAttribute("addingToCart");
+                    session.removeAttribute("productId");
+                    //response.sendRedirect("Home.jsp");
+                    System.out.println("i am from add to cart");
+                    response.sendRedirect("CheckIfLoggedIn?selectedProduct=" + productID);
+                } else {
+                    session.setAttribute("user", exists);
+                    session.setAttribute("category", "mobiles");
+                    //response.sendRedirect("Home.jsp");
+                    rd.forward(request, response);
+                    
+                }
+            } else {
+                response.sendRedirect("GetAllAdminData");
             }
-            else
-            {
-                session.setAttribute("user", exists);
-                session.setAttribute("category", "mobiles");
-                //response.sendRedirect("Home.jsp");
-                rd.forward(request, response);
-
-            }
-
+            
         } else {
-            response.sendRedirect("logIn.jsp");
+            
+            response.sendRedirect("logIn.jsp?notlogged=true");
         }
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
