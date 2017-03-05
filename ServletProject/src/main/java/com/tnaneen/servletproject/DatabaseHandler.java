@@ -63,47 +63,6 @@ public class DatabaseHandler {
     
     ///// ---- insert new product 
     
-    public Blob createImageBlob(String imagePath){
-        try {
-            //read image from directory
-            BufferedImage originalImage = ImageIO.read(new File(imagePath));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, "jpg", baos);
-            baos.flush();
-            
-            //get image as bytes
-            byte[] bytes = baos.toByteArray();
-            baos.close();
-            
-            //create a blob object
-            Blob blob = conn.createBlob();
-            blob.setBytes(1, bytes);
-            
-            return blob;
-        } catch (IOException | SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-    }
-    
-    public File writeImageFromBlob(Blob blob, String imagePath){ 
-        try {
-            byte[] bytes = blob.getBytes(1, (int) blob.length());
-            
-            //write new image from bytes
-            InputStream in = new ByteArrayInputStream(bytes);
-            BufferedImage bImageFromConvert = ImageIO.read(in);
-            File image = new File(imagePath);
-            ImageIO.write(bImageFromConvert, "jpg", image);
-            
-            return image;
-        } catch (SQLException | IOException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-    
     public boolean insertNewProduct( Product product ) {
         
             try {
@@ -115,7 +74,7 @@ public class DatabaseHandler {
                 pst.setInt(3, product.getAvailable());
                 pst.setString(4, product.getCategory());
                 pst.setString(5, product.getDescription());
-                pst.setBlob(6, createImageBlob(product.getImage()));
+                pst.setString(6, product.getImage());
              
                 int queryResult = pst.executeUpdate();
                 
@@ -183,7 +142,7 @@ public class DatabaseHandler {
                 pst.setString(4, product.getCategory());
                 pst.setString(5, product.getDescription());
                 pst.setInt(6, product.getId());
-               // pst.setBlob(7, createImageBlob(product.getImage()));
+                pst.setString(7, product.getImage());
                 
                 int queryResult = pst.executeUpdate();
                 
@@ -223,7 +182,7 @@ public class DatabaseHandler {
                 
                 while (rs.next()) 
                 {    
-                    product = new Product(id, rs.getString("name"),rs.getInt("price") , rs.getInt("available"), rs.getString("category"), rs.getString("description"), rs.getString("name"));
+                    product = new Product(id, rs.getString("name"),rs.getInt("price") , rs.getInt("available"), rs.getString("category"), rs.getString("description"), rs.getString("image"));
                 }
               
             } catch (SQLException ex) {
@@ -259,7 +218,7 @@ public class DatabaseHandler {
                  System.out.println("=//////////////======");
                  sum++;
                  //////////////// check which column contains my Email to get friends data
-                  Product product = new Product(rs.getInt("id"), rs.getString("name"),rs.getInt("price") , rs.getInt("available"), rs.getString("category"), rs.getString("description"), "C:23456");
+                  Product product = new Product(rs.getInt("id"), rs.getString("name"),rs.getInt("price") , rs.getInt("available"), rs.getString("category"), rs.getString("description"), rs.getString("image"));
                   products.add(product);
                   System.out.println("=======" + product.getId());
              }
