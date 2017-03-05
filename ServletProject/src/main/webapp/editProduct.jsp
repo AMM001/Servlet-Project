@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Add Products</title>
+        <title>Edit Product</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -70,34 +70,23 @@
        
         <div class="wrapper">
             <div style="text-align: center;">
-                <h3>Add New Products</h3>
+                <h3>Edit Product</h3>
             </div>
-            <form class="form-signin" method="post" action="addProductServlet">   
+            <form class="form-signin" method="post" action="editProductServlet">   
                 
                 <center><label>Image</label></center>
-                <input type="file" name="prodImage" accept="image/*" class="form-control">
+                <input type="file" name="prodImage" value="${sessionScope.product.image}" accept="image/*" class="form-control">
                 
                 <center><label>Name</label></center>
-                <input type="text" class="form-control" name="prodName" placeholder="Name" required="" autofocus="" />
+                <input type="text" class="form-control" name="prodName" value="${sessionScope.product.name}" placeholder="Name" required="" autofocus="" />
                 
                 <center><label>Price</label></center>
-                <input type="text" class="form-control" name="prodPrice" placeholder="Price" required=""/>   
+                <input type="text" class="form-control" name="prodPrice" value="${sessionScope.product.price}" placeholder="Price" required=""/>   
                 
                 <center><label>Description</label></center>
-                <input type="text" class="form-control" name="prodDesc" placeholder="Description" required="" autofocus="" />
+                <input type="text" class="form-control" name="prodDesc" value="${sessionScope.product.description}" placeholder="Description" required="" autofocus="" />
                 
-                <center><label>Category</label>
-                <div class="dropdown">
-                    <select name="category">
-                        <option value="mobiles">Mobiles</option>
-                        <option value="laptops">Laptops</option>
-                        <option value="gaming">Gaming</option>
-                        <option value="headphones">Headphones</option>
-                    </select>
-                </div></center>
-                <br><br>
-                
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Save Edits</button> 
                 <button class="btn btn-lg btn-primary btn-block">Cancel</button> 
             </form>
         </div>
