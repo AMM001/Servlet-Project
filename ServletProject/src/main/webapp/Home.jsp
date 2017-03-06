@@ -12,7 +12,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ustora Demo</title>
+        <title>Techno Home </title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -120,11 +120,23 @@
             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                         -->
                                         <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
-                                        <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+
                                         <li><a href="charge.jsp"><i class="fa fa-money"></i> Recharge</a></li>    
                                     </ul>
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <div class="header-right">
+                                    <ul class="list-unstyled list-inline">
+
+                                        <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                 </div> <!-- End header area -->
@@ -203,18 +215,18 @@
                                             <a href="getAllProductsServlet?category=gaming">Gaming</a>
                                             <a href="getAllProductsServlet?category=headphones">headphones</a>
                                         </div>
-                                     
+
                                     </div>
-                                      <div class="dropdown">
-                                      <button class="dropbtn">Prices</button>
-                                            <div class="dropdown-content">
-                                                <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
-                                                <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
-                                                <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
-                                                <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
-                                            </div>
-                                      </div>
-                                    
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Prices</button>
+                                        <div class="dropdown-content">
+                                            <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
+                                            <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
+                                            <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
+                                            <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
+                                        </div>
+                                    </div>
+
                                     <!--
            <li><a href="checkout.html">Checkout</a></li>
           <li><a href="single-product.html">Single product</a></li>
@@ -297,9 +309,9 @@
                         <img src="img/h4-slide.png" alt="Slide">
                         <div class="caption-group">
                             <h2 class="caption title">
-                                iPhone <span class="primary">6 <strong>Plus</strong></span>
+                                <span class="primary"> <strong>Mobile Phones</strong></span>
                             </h2>
-                            <h4 class="caption subtitle">Dual SIM</h4>
+                         
                             <!--
                             <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                             -->
@@ -308,9 +320,9 @@
                     <li><img src="img/h4-slide2.png" alt="Slide">
                         <div class="caption-group">
                             <h2 class="caption title">
-                                by one, get one <span class="primary">50% <strong>off</strong></span>
+                                 <span class="primary"> <strong>GAMING</strong></span>
                             </h2>
-                            <h4 class="caption subtitle">school supplies & backpacks.*</h4>
+                          
                             <!--
                             <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                             -->
@@ -319,9 +331,9 @@
                     <li><img src="img/h4-slide3.png" alt="Slide">
                         <div class="caption-group">
                             <h2 class="caption title">
-                                Apple <span class="primary">Store <strong>Ipod</strong></span>
+                                <span class="primary"> <strong>Laptops</strong></span>
                             </h2>
-                            <h4 class="caption subtitle">Select Item</h4>
+                         
                             <!--
                             <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                             -->
@@ -330,9 +342,9 @@
                     <li><img src="img/h4-slide4.png" alt="Slide">
                         <div class="caption-group">
                             <h2 class="caption title">
-                                Apple <span class="primary">Store <strong>Ipod</strong></span>
+                                <span class="primary"><strong>HeadPhones</strong></span>
                             </h2>
-                            <h4 class="caption subtitle">& Phone</h4>
+                       
                             <!--
                             <a class="caption button-radius" href="#"><span class="icon"></span>Shop now</a>
                             -->
@@ -374,6 +386,31 @@
                 </div>
             </div>
         </div> <!-- End promo area -->
+        
+        
+        
+            
+    <div class="brands-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="brand-wrapper">
+                        <div class="brand-list">
+                            <img src="img/brand1.png" alt="">
+                            <img src="img/brand2.png" alt="">
+                            <img src="img/brand3.png" alt="">
+                            <img src="img/brand4.png" alt="">
+                            <img src="img/brand5.png" alt="">
+                            <img src="img/brand6.png" alt="">
+                            <img src="img/brand1.png" alt="">
+                            <img src="img/brand2.png" alt="">                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End brands area -->
 
         <div class="maincontent-area">
             <div class="zigzag-bottom"></div>
@@ -418,7 +455,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach items="${sessionScope.filteredProducts}" var="product">
-                                            
+
                                             <div class="single-product">
                                                 <div class="product-f-image">
                                                     <img src="img/${product.getImage()}" alt="">
@@ -435,7 +472,7 @@
                                                 </div> 
                                             </div>
                                         </c:forEach> 
-                                            <% session.removeAttribute("filteredProducts"); %>
+                                        <% session.removeAttribute("filteredProducts");%>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -447,13 +484,68 @@
                 </div>
             </div>
         </div> <!-- End main content area -->
+        
+        
+        
+        
+        
+         
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>Techno<span>Home</span></h2>
+                        <p>home of technology </p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <ul>
+                        
+                            <li><a href="Home.jsp">Home</a></li>
+                           
 
-
-
-
-
-
-
+                        </ul>                        
+                    </div>
+                </div>
+                
+        
+                
+            
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+    
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p><./> with LOVE</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
 

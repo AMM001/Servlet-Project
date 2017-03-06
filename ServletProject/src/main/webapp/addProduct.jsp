@@ -108,7 +108,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
+                            <h1><a href="adminHome.html"><img src="img/logo.png"></a></h1>
                         </div>
                     </div>						
                 </div>
@@ -128,216 +128,238 @@
             </div>
         </div>
 
-        <div class="wrapper">
-            <div style="text-align: center;">
+        <br>
+    <center>
+        <button style="width:200px;" data-toggle="modal" data-target="#addProductModal" class="btn btn-lg btn-primary btn-block form-signin-heading">Add New Product</button>
+    </center>
 
-            </div>
-            <form class="form-signin" method="post" action="addProductServlet">   
-
-                <center><label>Image</label></center>
-                <input type="file" name="prodImage" accept="image/*" class="form-control">
-
-                <center><label>Name</label></center>
-                <input type="text" class="form-control" name="prodName" placeholder="Name" required="" autofocus="" />
-
-                <center><label>Price</label></center>
-                <input type="text" class="form-control" name="prodPrice" placeholder="Price" required=""/>   
-
-                <center><label>Description</label></center>
-                <input type="text" class="form-control" name="prodDesc" placeholder="Description" required="" autofocus="" />
-
-                <!--TODO: specify a name attribute-->
-                <center><label >Category</label>
-                    <div class="dropdown">
-                        <select name="category" >
-                            <option value="mobiles">Mobiles</option>
-                            <option value="laptops">Laptops</option>
-                            <option value="gaming">Gaming</option>
-                            <option value="headphones">Headphones</option>
-                        </select>
-                    </div></center>
-                <br><br>
-
-
-                <br><br>
-
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
-                <button class="btn btn-lg btn-primary btn-block">Cancel</button> 
-            </form>
-        </div>
-
-
-
-        <div class="maincontent-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="latest-product">
-                            <h2 class="section-title">Mobiles</h2>
-                            <div class="product-carousel">
-                                <c:forEach items="${sessionScope.mobilesList}" var="mobile">
-                                    <div class="single-product">
-                                        <div class="product-f-image">
-                                            <img src="img/${mobile.getImage()}" alt="">
-                                            <div class="product-hover">
-                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details - ${mobile.getId()} </a>
-                                            </div>
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 class="section-title">Mobiles</h2>
+                        <div class="product-carousel">
+                            <c:forEach items="${sessionScope.mobilesList}" var="mobile">
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img src="img/${mobile.getImage()}" alt="">
+                                        <div class="product-hover">
+                                            <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                         </div>
-
-                                        <h2><a href="">${mobile.getName()}</a></h2>
-
-                                        <div class="product-carousel-price">
-                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
-                                        </div> 
                                     </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End main content area -->
 
-        <div class="maincontent-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="latest-product">
-                            <h2 class="section-title">Laptops</h2>
-                            <div class="product-carousel">
-                                <c:forEach items="${sessionScope.laptopsList}" var="mobile">
-                                    <div class="single-product">
-                                        <div class="product-f-image">
-                                            <img src="img/${mobile.getImage()}" alt="">
-                                            <div class="product-hover">
-                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                            </div>
-                                        </div>
+                                    <h2><a href="">${mobile.getName()}</a></h2>
 
-                                        <h2><a href="">${mobile.getName()}</a></h2>
-
-                                        <div class="product-carousel-price">
-                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
-                                        </div> 
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End main content area -->
-
-
-        <div class="maincontent-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="latest-product">
-                            <h2 class="section-title">Gaming</h2>
-                            <div class="product-carousel">
-                                <c:forEach items="${sessionScope.gamingList}" var="mobile">
-                                    <div class="single-product">
-                                        <div class="product-f-image">
-                                            <img src="img/${mobile.getImage()}" alt="">
-                                            <div class="product-hover">
-                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                            </div>
-                                        </div>
-
-                                        <h2><a href="">${mobile.getName()}</a></h2>
-
-                                        <div class="product-carousel-price">
-                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
-                                        </div> 
-                                    </div>
-                                </c:forEach>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End main content area -->
-
-
-
-
-        <div class="maincontent-area">
-
-
-
-            <div class="maincontent-area">
-                <div class="zigzag-bottom"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="latest-product">
-                                <h2 class="section-title">Headphones</h2>
-                                <div class="product-carousel">
-                                    <c:forEach items="${sessionScope.headphonesList}" var="mobile">
-                                        <div class="single-product">
-                                            <div class="product-f-image">
-                                                <img src="img/${mobile.getImage()}" alt="">
-                                                <div class="product-hover">
-                                                    <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                    <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-                                                </div>
-                                            </div>
-
-                                            <h2><a href="">${mobile.getName()}</a></h2>
-
-                                            <div class="product-carousel-price">
-                                                <ins>$${mobile.getPrice()}</ins> <del>$100</del>
-                                            </div> 
-                                        </div>
-                                    </c:forEach>
+                                    <div class="product-carousel-price">
+                                        <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                    </div> 
                                 </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End main content area -->
+
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 class="section-title">Laptops</h2>
+                        <div class="product-carousel">
+                            <c:forEach items="${sessionScope.laptopsList}" var="mobile">
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img src="img/${mobile.getImage()}" alt="">
+                                        <div class="product-hover">
+                                            <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        </div>
+                                    </div>
+
+                                    <h2><a href="">${mobile.getName()}</a></h2>
+
+                                    <div class="product-carousel-price">
+                                        <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                    </div> 
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End main content area -->
+
+
+    <div class="maincontent-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="latest-product">
+                        <h2 class="section-title">Gaming</h2>
+                        <div class="product-carousel">
+                            <c:forEach items="${sessionScope.gamingList}" var="mobile">
+                                <div class="single-product">
+                                    <div class="product-f-image">
+                                        <img src="img/${mobile.getImage()}" alt="">
+                                        <div class="product-hover">
+                                            <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                        </div>
+                                    </div>
+
+                                    <h2><a href="">${mobile.getName()}</a></h2>
+
+                                    <div class="product-carousel-price">
+                                        <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                    </div> 
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End main content area -->
+
+
+
+
+    <div class="maincontent-area">
+
+
+
+        <div class="maincontent-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="latest-product">
+                            <h2 class="section-title">Headphones</h2>
+                            <div class="product-carousel">
+                                <c:forEach items="${sessionScope.headphonesList}" var="mobile">
+                                    <div class="single-product">
+                                        <div class="product-f-image">
+                                            <img src="img/${mobile.getImage()}" alt="">
+                                            <div class="product-hover">
+                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                            </div>
+                                        </div>
+
+                                        <h2><a href="">${mobile.getName()}</a></h2>
+
+                                        <div class="product-carousel-price">
+                                            <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                        </div> 
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> <!-- End main content area -->
-        </div>
+            </div>
+        </div> <!-- End main content area -->
+    </div>
 
-        <div class="footer-bottom-area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="copyright">
-                            <p>&copy; Coded with ♥. </p>
-                        </div>
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; Coded with ♥. </p>
                     </div>
+                </div>
 
+
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
+
+
+    <!--ADD PRODUCT MODAL---------------------------->
+    <div id="addProductModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Product</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="wrapper">
+                        <div style="text-align: center;">
+
+                        </div>
+                        <form class="form-signin" method="post" action="addProductServlet">   
+
+                            <label>Image</label>
+                            <input type="file" name="prodImage" accept="image/*" class="form-control">
+
+                            <label>Name</label>
+                            <input type="text" class="form-control" name="prodName" placeholder="Name" required="" autofocus="" />
+
+                            <label>Price</label>
+                            <input type="number" class="form-control" name="prodPrice" placeholder="Price" required=""/>   
+
+                            <label>Available Quantity</label>
+                            <input type="number" size="4" class="form-control" name="prodQuantity" min="1" step="1">
+
+                            <label>Description</label>
+                            <input type="text" class="form-control" name="prodDesc" placeholder="Description" required="" autofocus="" />
+
+                            <!--TODO: specify a name attribute-->
+                            <label>Category</label>
+                            <center>
+                                <div class="dropdown form-control">
+                                    <select name="category" >
+                                        <option value="mobiles">Mobiles</option>
+                                        <option value="laptops">Laptops</option>
+                                        <option value="gaming">Gaming</option>
+                                        <option value="headphones">Headphones</option>
+                                    </select>
+                                </div>
+                            </center>
+                            <br><br>
+
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
+                            <button class="btn btn-lg btn-primary btn-block">Cancel</button> 
+                        </form>
+                    </div>
 
                 </div>
             </div>
-        </div> <!-- End footer bottom area -->
 
+        </div>
+    </div>
+    
+    <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-        <!-- Latest jQuery form server -->
-        <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-        <!-- Bootstrap JS form CDN -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
 
-        <!-- jQuery sticky menu -->
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
 
-        <!-- jQuery easing -->
-        <script src="js/jquery.easing.1.3.min.js"></script>
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
 
-        <!-- Main Script -->
-        <script src="js/main.js"></script>
-
-        <!-- Slider -->
-        <script type="text/javascript" src="js/bxslider.min.js"></script>
-        <script type="text/javascript" src="js/script.slider.js"></script>
-    </body>
+    <!-- Slider -->
+    <script type="text/javascript" src="js/bxslider.min.js"></script>
+    <script type="text/javascript" src="js/script.slider.js"></script>
+</body>
 </html>

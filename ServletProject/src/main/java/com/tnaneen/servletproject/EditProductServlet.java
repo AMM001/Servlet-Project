@@ -43,10 +43,11 @@ public class EditProductServlet extends HttpServlet {
             String productDesc = request.getParameter("prodDesc");
             int price = Integer.parseInt(request.getParameter("prodPrice"));
             String productImage = request.getParameter("prodImage");
+            int available = Integer.parseInt(request.getParameter("prodQuantity"));
             Product editedProduct = db.getProduct(id);
             String category = editedProduct.getCategory();
             ArrayList<Product> products = (ArrayList<Product>) mySession.getAttribute(category + "List");
-            Product newProduct = new Product(id, productName, price, editedProduct.getAvailable(), category, productDesc, productImage);
+            Product newProduct = new Product(id, productName, price, available, category, productDesc, productImage);
 
             /////////////////   b. looooop to get target product
             Product selectedProduct = null;
