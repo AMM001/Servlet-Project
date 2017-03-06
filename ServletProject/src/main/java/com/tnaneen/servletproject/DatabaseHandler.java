@@ -68,13 +68,14 @@ public class DatabaseHandler {
             try {
                 openConnection();
        
-                pst = conn.prepareStatement("INSERT INTO ecommerce.product (name, price, available, category,description, image) VALUES (?,?,?,?,?,?)");
-                pst.setString(1, product.getName());
-                pst.setInt(2, product.getPrice());
-                pst.setInt(3, product.getAvailable());
-                pst.setString(4, product.getCategory());
-                pst.setString(5, product.getDescription());
-                pst.setString(6, product.getImage());
+                pst = conn.prepareStatement("INSERT INTO ecommerce.product (id,name, price, available, category,description, image) VALUES (?,?,?,?,?,?,?)");
+                pst.setInt(1, product.getId());
+                pst.setString(2, product.getName());
+                pst.setInt(3, product.getPrice());
+                pst.setInt(4, product.getAvailable());
+                pst.setString(5, product.getCategory());
+                pst.setString(6, product.getDescription());
+                pst.setString(7, product.getImage());
              
                 int queryResult = pst.executeUpdate();
                 
@@ -105,6 +106,7 @@ public class DatabaseHandler {
                 openConnection();
        
                 pst = conn.prepareStatement("DELETE from ecommerce.product WHERE id = ?");
+                System.out.println("&&&&&&&&>>> " +  product.getId());
                 pst.setInt(1, product.getId());
                 
                 int queryResult = pst.executeUpdate();
@@ -541,4 +543,28 @@ public class DatabaseHandler {
     }
     
     ///////////////////////////// end of cash code processing ////////////////////
+    //////////////////////////// updates in DB 6-3-2017
+    
+    public int getMaxId() {
+        int id = -1;
+        try {
+            openConnection();
+            pst = conn.prepareStatement("SELECT max(id) FROM ecommerce.product");
+           
+            rs = pst.executeQuery();
+            User user = null;
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            closeConnection();
+        }
+       return  id;
+    }
+    
+    ///////////////////////
 }

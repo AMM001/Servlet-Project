@@ -108,7 +108,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="adminHome.html"><img src="img/logo.png"></a></h1>
+                            <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
                         </div>
                     </div>						
                 </div>
@@ -182,7 +182,7 @@
                                             <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
                                                 <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details - ${mobile.getId()} </a>
                                             </div>
                                         </div>
 

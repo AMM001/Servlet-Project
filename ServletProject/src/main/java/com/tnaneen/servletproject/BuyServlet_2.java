@@ -5,11 +5,9 @@
  */
 package com.tnaneen.servletproject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author rocke
+ * @author mohamed
  */
-@WebServlet(name = "AddProductServlet", urlPatterns = {"/addProductServlet"})
-public class AddProductServlet extends HttpServlet {
+@WebServlet(name = "BuyServlet_2", urlPatterns = {"/BuyServlet_2"})
+public class BuyServlet_2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,41 +33,43 @@ public class AddProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            String prodName = request.getParameter("prodName");
-            //ServletContext context = request.getServletContext();
-            //String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
-            String prodImage = request.getParameter("prodImage");
-            String prodPrice = request.getParameter("prodPrice");
-            String prodDesc = request.getParameter("prodDesc");
-            String prodCateg = request.getParameter("category");
-           
-            System.out.println("PATH: " + prodImage);
-         
-            Product prod = new Product();
-            prod.setImage(prodImage);
-            prod.setName(prodName);
-            prod.setPrice(Integer.parseInt(prodPrice));
-            prod.setDescription(prodDesc);
-            prod.setCategory(prodCateg);
-            prod.setAvailable(1); //product added -> available
-            
-            ////////// get max id from db
-            int prodId = new DatabaseHandler().getMaxId();
-            prod.setId(prodId +1);
-            System.out.println("zzzzzzzzzzzz "+ prodId);
-            
-            if(new DatabaseHandler().insertNewProduct(prod)){
-                HttpSession s = request.getSession();
-                ArrayList<Product> prods = (ArrayList<Product>) s.getAttribute(prod.getCategory() + "List");
-                prods.add(prod);
-                //TODO: check all redirects bta3t el admin
-                response.sendRedirect("addProduct.jsp");
+        
+        
+        ///////// 1. Get productId and productCategory from request
+        int productID = Integer.parseInt( request.getParameter("productId") );
+        String productCategory =  request.getParameter("productCategory") ;
+                 
+        ///////// 2. Remove from SESSION
+        /////////////////  a. get CatList from session
+        String listNameInSession = productCategory+"List";
+        HttpSession currentSession = request.getSession();
+        ArrayList<Product> list = (ArrayList<Product>) currentSession.getAttribute(listNameInSession);
+        
+        /////////////////   b. looooop to get target product
+        Product selectedProduct = null;
+        for(int i=0; i<list.size(); i++)
+        {
+            Product current = list.get(i);
+            if (current.getId() == productID)
+            {
+                selectedProduct = current;
+                break;
             }
         }
+        
+        //////////////////   c. remove it from SESSION
+        list.remove(selectedProduct);
+        currentSession.setAttribute(listNameInSession, list);
+        
+        ///////// 3. Remove from DB
+         DatabaseHandler databaseHandler = new DatabaseHandler();
+         databaseHandler.removeProduct(selectedProduct);
+            
+           
+        ///////// 4. Redirect to blablabla
+         response.sendRedirect("addProduct.jsp");
+          
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

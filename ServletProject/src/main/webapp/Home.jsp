@@ -1,6 +1,7 @@
 <%@page import="com.tnaneen.servletproject.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--
         ustora by freshdesignweb.com
         Twitter: https://twitter.com/freshdesignweb
@@ -380,8 +381,19 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="latest-product">
-                            <h2 class="section-title">Products</h2>
+                            <h2 class="section-title">${sessionScope.category}</h2>
 
+                            
+                            <c:choose >
+
+                                <c:when test="${sessionScope.filteredProducts.size()==0 }"  >
+                                   <center> <h1 style="color:red" >Sorry, No Results match your search criteria !</h1> </center>
+                                </c:when>
+                                <c:when test="${sessionScope.products.size()==0 }"  >
+                                <center> <h1 style="color:red" >Sorry, No Products found !</h1></center>
+                                </c:when>
+                               
+                            <c:otherwise>
                             <div class="product-carousel">
                                 <c:choose>
                                     <c:when test="${sessionScope.filteredProducts==null}" >
@@ -399,13 +411,12 @@
                                                 <h2><a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}">${product.getName()}</a></h2>
 
                                                 <div class="product-carousel-price">
-                                                    <ins>$${product.getPrice()}</ins> <del>$100.00</del>
+                                                    <ins>$${product.getPrice()}</ins> <del>$${product.getPrice() + 100 + Math.floor( Math.random()*400 )}</del>
                                                 </div> 
                                             </div>
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
-                                        <% System.out.println("7amada fash5 tenen"+((ArrayList<Product>) session.getAttribute("filteredProducts")).size()); %>
                                         <c:forEach items="${sessionScope.filteredProducts}" var="product">
                                             
                                             <div class="single-product">
@@ -420,7 +431,7 @@
                                                 <h2><a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}">${product.getName()}</a></h2>
 
                                                 <div class="product-carousel-price">
-                                                    <ins>$${product.getPrice()}</ins> <del>$100.00</del>
+                                                    <ins>$${product.getPrice()}</ins> <del>$${product.getPrice() + 100 + Math.floor( Math.random()*400 )}</del>
                                                 </div> 
                                             </div>
                                         </c:forEach> 
@@ -428,6 +439,9 @@
                                     </c:otherwise>
                                 </c:choose>
                             </div>
+                                </c:otherwise>
+                            </c:choose>
+                            
                         </div>
                     </div>
                 </div>

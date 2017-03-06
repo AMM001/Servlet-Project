@@ -5,11 +5,9 @@
  */
 package com.tnaneen.servletproject;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author rocke
+ * @author mohamed
  */
-@WebServlet(name = "AddProductServlet", urlPatterns = {"/addProductServlet"})
-public class AddProductServlet extends HttpServlet {
+@WebServlet(name = "RemoveProductServlet", urlPatterns = {"/RemoveProductServlet"})
+public class RemoveProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,42 +33,30 @@ public class AddProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-
-            String prodName = request.getParameter("prodName");
-            //ServletContext context = request.getServletContext();
-            //String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
-            String prodImage = request.getParameter("prodImage");
-            String prodPrice = request.getParameter("prodPrice");
-            String prodDesc = request.getParameter("prodDesc");
-            String prodCateg = request.getParameter("category");
+      
+        
+            ////////////// 1. get products ID from SESSION
+            HttpSession currentSession = request.getSession();
+            Product product = (Product) currentSession.getAttribute("productToBeRemoved");
+            
+            ////////////// 2. remove the product from 
+            DatabaseHandler databaseHandler = new DatabaseHandler();
+            databaseHandler.removeProduct(product);
+            
+            ////////////// 3. remove the product from session
+            String productCat = product.getCategory();
+            String listNameInSession = productCat+"List";
            
-            System.out.println("PATH: " + prodImage);
-         
-            Product prod = new Product();
-            prod.setImage(prodImage);
-            prod.setName(prodName);
-            prod.setPrice(Integer.parseInt(prodPrice));
-            prod.setDescription(prodDesc);
-            prod.setCategory(prodCateg);
-            prod.setAvailable(1); //product added -> available
+            ArrayList<Product> list = (ArrayList<Product>) currentSession.getAttribute(listNameInSession);
+            list.remove(product);
             
-            ////////// get max id from db
-            int prodId = new DatabaseHandler().getMaxId();
-            prod.setId(prodId +1);
-            System.out.println("zzzzzzzzzzzz "+ prodId);
-            
-            if(new DatabaseHandler().insertNewProduct(prod)){
-                HttpSession s = request.getSession();
-                ArrayList<Product> prods = (ArrayList<Product>) s.getAttribute(prod.getCategory() + "List");
-                prods.add(prod);
-                //TODO: check all redirects bta3t el admin
-                response.sendRedirect("addProduct.jsp");
-            }
+            currentSession.setAttribute(listNameInSession, list);
+        
+            ////////////// 4. redirect to Home>>Products
+           response.sendRedirect("addProduct.jsp");
+               
         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
