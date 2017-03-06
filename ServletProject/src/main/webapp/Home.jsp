@@ -94,8 +94,8 @@
             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                         -->
-                                        <li><a href="logIn.jsp"><i class="fa fa-user"></i> Login</a></li>
-                                        <li><a href="sign up.jsp"><i class="fa fa-user"></i> Sign up</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#logIn"><i class="fa fa-user"></i> Login</a></li>
+                                        <li><a href="" data-toggle="modal" data-target="#signUp"><i class="fa fa-user"></i> Sign up</a></li>
 
                                     </ul>
                                 </div>
@@ -202,18 +202,18 @@
                                             <a href="getAllProductsServlet?category=gaming">Gaming</a>
                                             <a href="getAllProductsServlet?category=headphones">headphones</a>
                                         </div>
-                                     
+
                                     </div>
-                                      <div class="dropdown">
-                                      <button class="dropbtn">Prices</button>
-                                            <div class="dropdown-content">
-                                                <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
-                                                <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
-                                                <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
-                                                <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
-                                            </div>
-                                      </div>
-                                    
+                                    <div class="dropdown">
+                                        <button class="dropbtn">Prices</button>
+                                        <div class="dropdown-content">
+                                            <a href="SearchServlet?minPrice=1000&maxPrice=6000">1000-6000</a>
+                                            <a href="SearchServlet?minPrice=6000&maxPrice=12000">6000-12000</a>
+                                            <a href="SearchServlet?minPrice=12000&maxPrice=18000">12000-18000</a>
+                                            <a href="SearchServlet?minPrice=18000&maxPrice=24000">18000-24000</a>
+                                        </div>
+                                    </div>
+
                                     <!--
            <li><a href="checkout.html">Checkout</a></li>
           <li><a href="single-product.html">Single product</a></li>
@@ -405,9 +405,9 @@
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
-                                        <% System.out.println("7amada fash5 tenen"+((ArrayList<Product>) session.getAttribute("filteredProducts")).size()); %>
+                                        <% System.out.println("7amada fash5 tenen" + ((ArrayList<Product>) session.getAttribute("filteredProducts")).size()); %>
                                         <c:forEach items="${sessionScope.filteredProducts}" var="product">
-                                            
+
                                             <div class="single-product">
                                                 <div class="product-f-image">
                                                     <img src="img/${product.getImage()}" alt="">
@@ -424,7 +424,7 @@
                                                 </div> 
                                             </div>
                                         </c:forEach> 
-                                            <% session.removeAttribute("filteredProducts"); %>
+                                        <% session.removeAttribute("filteredProducts");%>
                                     </c:otherwise>
                                 </c:choose>
                             </div>
@@ -433,13 +433,71 @@
                 </div>
             </div>
         </div> <!-- End main content area -->
+        <!-- Modal -->
+        <div id="logIn" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="wrapper">
+                            <form class="form-signin" method="post" action="loginServlet">       
+                                <h2 class="form-signin-heading">welcome back </h2>
+                                <input style="font-size: 10px;" type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
+                                <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+                                <br>
+                                <center> 
+                                    <button style="width:100px;" class="btn btn-lg btn-primary" type="submit">Login</button>  
+                                    <button style="width:100px;" class="btn btn-lg btn-danger" data-dismiss="modal">CLOSE</button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>
 
+                </div>
 
+            </div>
+        </div>
+        <!-- sign up Modal -->
+        <div id="signUp" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="wrapper">
+                            <form class="form-signin" method="post" action="registerServlet">       
+                                <h2 class="form-signin-heading">welcome</h2>
+                                <label>Email</label>     
+                                <input type="email" style="font-size: 10px;" class="form-control" name="email" required="" autofocus="" />
+                                <label>USERNAME</label>    
+                                <input type="text" style="font-size: 10px;" class="form-control" name="userName" required="" autofocus="" />
+                                <label>ADDRESS</label>    
+                                <input type="text" style="font-size: 10px;" class="form-control" name="Address" required="" autofocus="" />
+                                <label>PASSWORD</label>    
+                                <input type="password" class="form-control" name="password" required=""/>  
+                                <label>JOB</label>   
+                                <input type="text" class="form-control" name="job" required=""/>  
+                                <label>GENDER</label>    
+                                <div class="radio">
+                                    <label><input type="radio" name="male" checked>Male</label>
+                                    <label><input type="radio" name="female" >Female</label>
+                                </div>
+                                <!--
+                                <input type="date" class="form-control" name="birthday" placeholder=" autofocus="" />
+                                -->
+                                <button style="width:100px;" class="btn btn-lg btn-success" type="submit">SIGN UP</button>   
+                                <button style="width:100px;" class="btn btn-lg btn-danger" data-dismiss="modal">CLOSE</button>
+                            </form>
+                        </div>
+                    </div>
 
+                </div>
 
-
+            </div>
+        </div>
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
 
