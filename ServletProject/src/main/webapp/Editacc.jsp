@@ -51,7 +51,7 @@
         <div class="wrapper">
             <form class="form-signin">   
                 <center>
-                    <img class="img-circle" src="img/edit-.jpg"  style="width:128px;height:128px;">
+                    <img class="img-circle" src="img/default-avatar.png"  style="width:128px;height:128px;">
                 </center>
                 <h2 class="form-signin-heading">Hi</h2>
 

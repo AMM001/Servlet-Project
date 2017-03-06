@@ -179,10 +179,10 @@
                                 <c:forEach items="${sessionScope.mobilesList}" var="mobile">
                                     <div class="single-product">
                                         <div class="product-f-image">
-                                            <img src="img/product-1.jpg" alt="">
+                                            <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -211,10 +211,10 @@
                                 <c:forEach items="${sessionScope.laptopsList}" var="mobile">
                                     <div class="single-product">
                                         <div class="product-f-image">
-                                            <img src="img/product-1.jpg" alt="">
+                                            <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -244,10 +244,10 @@
                                 <c:forEach items="${sessionScope.gamingList}" var="mobile">
                                     <div class="single-product">
                                         <div class="product-f-image">
-                                            <img src="img/product-1.jpg" alt="">
+                                            <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -283,10 +283,10 @@
                                     <c:forEach items="${sessionScope.headphonesList}" var="mobile">
                                         <div class="single-product">
                                             <div class="product-f-image">
-                                                <img src="img/product-1.jpg" alt="">
+                                                <img src="img/${mobile.getImage()}" alt="">
                                                 <div class="product-hover">
-                                                    <a href="" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                    <a href="" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                    <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                    <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                                 </div>
                                             </div>
 

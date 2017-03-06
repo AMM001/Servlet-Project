@@ -220,11 +220,11 @@
                                                 </td>
 
                                                 <td class="product-thumbnail">
-                                                    <a href="single-product.html"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/product-thumb-2.jpg"></a>
+                                                    <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/${cartItem.getProductImage()}"></a>
                                                 </td>
 
                                                 <td class="product-name">
-                                                    <a href="single-product.html">${cartItem.getProductName()}</a> 
+                                                    <a href="">${cartItem.getProductName()}</a> 
                                                 </td>
 
                                                 <td class="product-price">
@@ -246,16 +246,17 @@
                                             </tr>
 
                                         </c:forEach>
-                                        <tr>
-                                            <td class="actions" colspan="6">
+                                        <c:if test="${sessionScope.MyShoppingCart.size()>0}" >
+                                            <tr>
+                                                <td class="actions" colspan="6">
 
-                                                <%--  <input type="submit" value="Save" name="save" class="button"> --%>
+                                                    <%--  <input type="submit" value="Save" name="save" class="button"> --%>
 
-                                                <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
-                                            </td>
-                                        </tr>
+                                                    <input type="submit" value="Buy" name="buy" class="checkout-button button alt wc-forward">
+                                                </td>
+                                            </tr>
+                                        </c:if>
 
-                                        </tbody>
                                     </table>
                                 </form>
                                 <a href="#" class="button" value="Save">Save</a>

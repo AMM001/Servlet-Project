@@ -49,6 +49,7 @@ public class CheckIfLoggedIn extends HttpServlet {
         
             int productID = Integer.parseInt( request.getParameter("selectedProduct") );
             String productName=request.getParameter("productName");
+            String productImage=request.getParameter("productImage");
             int productPrice=Integer.parseInt(request.getParameter("productPrice"));
             
             if (shoppingCart != null)
@@ -88,7 +89,7 @@ public class CheckIfLoggedIn extends HttpServlet {
                 ///////////////////////// NO its the first time to add this product to cart
                 else{
                     ////// 1. create cartItem Obj
-                    CartItem item = new CartItem(user.getId(), productID, 1, 0,productName,productPrice);
+                    CartItem item = new CartItem(user.getId(), productID, 1, 0,productName,productPrice,productImage);
                     
                     ///// 2. add it to shppingList
                     shoppingCart.add(item);
@@ -110,7 +111,7 @@ public class CheckIfLoggedIn extends HttpServlet {
                     ArrayList<CartItem> newShoppingCart = new ArrayList<>();
                     
                     ////  2. append new item 
-                    CartItem item = new CartItem(user.getId(),productID, 1, 0,productName,productPrice);
+                    CartItem item = new CartItem(user.getId(),productID, 1, 0,productName,productPrice,productImage);
                     newShoppingCart.add(item);
                      System.out.println("ProductID = "+ item.getProductId() + ">> Q="+item.getQuantity());
                   

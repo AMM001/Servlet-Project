@@ -102,12 +102,12 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="index.html"><img src="img/logo.png"></a></h1>
+                            <h1><a href="Home.jsp"><img src="img/logo.png"></a></h1>
                         </div>
                     </div>			
                     <div class="col-sm-6">
                         <div class="shopping-item">
-                            <a href="cart.html">Cart - <span class="cart-amunt">$100</span> <i class="fa fa-shopping-cart"></i></a>
+                            <a href="cart.jsp">Cash - <span class="cart-amunt">$${sessionScope.user.getCreditLimit()}</span> <i class="fa fa-shopping-cart"></i></a>
                         </div>
                     </div>			
                 </div>
@@ -179,7 +179,7 @@
                                 <div class="col-sm-6">
                                     <div class="product-images">
                                         <div class="product-main-img">
-                                            <img src="img/product-2.jpg" alt="">
+                                            <img src="img/${param.productImage}" alt="">
                                         </div>
 
                                     </div>
@@ -189,10 +189,10 @@
                                     <div class="product-inner">
 
 
-                                        <form>
+                                        <%-- <form>
 
                                             <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                        </form>   
+                                        </form>   --%>
 
 
 
@@ -203,8 +203,9 @@
                                                     <h1>${param.productName}</h1>
                                                     <h2>Product Description</h2>  
                                                     <p>${param.productDesc}</p>
-                                                    <img src="${param.productImage}" width="100px" height="auto">
+                                                    
                                                     <P style="color:steelblue;">$${param.productPrice}</P>
+                                                    <p style="color:red">${param.productQuantity} item available</p>
                                                 </div>
 
                                             </div>

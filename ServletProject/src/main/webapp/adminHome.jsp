@@ -73,10 +73,10 @@
         </style>
     </head>
     <body>
-        
+
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
-        
+
         <div class="header-area">
             <div class="container">
                 <div class="row">
@@ -93,60 +93,60 @@
         </div> <!-- End header area -->
 
         <!--with Log in-->
-       <div class="site-branding-area">
-           <div class="container">
-               <div class="row">
-                   <div class="col-sm-6">
-                       <div class="logo">
-                           <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
-                       </div>
-                   </div>						
-               </div>
-           </div>
-       </div> <!-- End site branding area -->
-       
-      
-		
-		
-		 <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-center">
-                          <div style="display:inline-block; width: 33%; text-align: center;"  >
-							<i><h2 style="font-size: 30px;">Statistics</h2></i>
-						</div>
-						<div style="display:inline-block; width: 33%; text-align: center;">
-                                                    <h3>${sessionScope.usersNum} User</h3>
-							</div>
-						<div style="display:inline-block; width: 33%; text-align: center;">
-                                                    <h3>${sessionScope.productsNum} Product</h3>
-						</div>
+        <div class="site-branding-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="logo">
+                            <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
+                        </div>
+                    </div>						
+                </div>
+            </div>
+        </div> <!-- End site branding area -->
+
+
+
+
+        <div class="product-big-title-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="product-bit-title text-center">
+                            <div style="display:inline-block; width: 33%; text-align: center;"  >
+                                <i><h2 style="font-size: 30px;">Statistics</h2></i>
+                            </div>
+                            <div style="display:inline-block; width: 33%; text-align: center;">
+                                <h3>${sessionScope.usersNum} User</h3>
+                            </div>
+                            <div style="display:inline-block; width: 33%; text-align: center;">
+                                <h3>${sessionScope.productsNum} Product</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-       
-       
+
+
         <!--TODO: css classes lel divs-->
-        <center>
-            <div style="padding:50px">
-                 <h2><a href="viewUsers.jsp" class="fa fa-user"> Users</a></h2>
-			
-             </div> 
-            <div style="padding:50px">
-                <h2><a href="addProduct.jsp" class="fa fa-tachometer">Products</a></h2>
-				 
-             </div>
-			
-             <div style="padding:50px">
-                <h2><a href="addCards.jsp" class="fa fa-shopping-cart">Cash Cards<i ></i></a></h2>
-             </div>
-        </center>
-		
-		
-         <div class="footer-bottom-area">
+    <center>
+        <div style="padding:50px">
+            <h2><a href="viewUsers.jsp" class="fa fa-user"> Users</a></h2>
+
+        </div> 
+        <div style="padding:50px">
+            <h2><a href="addProduct.jsp" class="fa fa-tachometer">Products</a></h2>
+
+        </div>
+
+        <div style="padding:50px">
+            <h2><a href="addCards.jsp" class="fa fa-shopping-cart">Cash Cards<i ></i></a></h2>
+        </div>
+    </center>
+
+
+    <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -154,30 +154,30 @@
                         <p>&copy; Coded with ♥. </p>
                     </div>
                 </div>
-                
-         
+
+
             </div>
         </div>
     </div> <!-- End footer bottom area -->
 
-        <!-- Latest jQuery form server -->
-        <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- Latest jQuery form server -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
 
-        <!-- Bootstrap JS form CDN -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-        <!-- jQuery sticky menu -->
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="js/jquery.sticky.js"></script>
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
 
-        <!-- jQuery easing -->
-        <script src="js/jquery.easing.1.3.min.js"></script>
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
 
-        <!-- Main Script -->
-        <script src="js/main.js"></script>
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
 
-        <!-- Slider -->
-        <script type="text/javascript" src="js/bxslider.min.js"></script>
-        <script type="text/javascript" src="js/script.slider.js"></script>
-    </body>
+    <!-- Slider -->
+    <script type="text/javascript" src="js/bxslider.min.js"></script>
+    <script type="text/javascript" src="js/script.slider.js"></script>
+</body>
 </html>

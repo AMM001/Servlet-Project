@@ -389,14 +389,14 @@
                                         <c:forEach items="${sessionScope.products}" var="product">
                                             <div class="single-product">
                                                 <div class="product-f-image">
-                                                    <img src="img/product-1.jpg" alt="">
+                                                    <img src="img/${product.getImage()}" alt="">
                                                     <div class="product-hover">
-                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}&productImage=${product.getImage()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                                     </div>
                                                 </div>
 
-                                                <h2><a href="single-product.html">${product.getName()}</a></h2>
+                                                <h2><a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}">${product.getName()}</a></h2>
 
                                                 <div class="product-carousel-price">
                                                     <ins>$${product.getPrice()}</ins> <del>$100.00</del>
@@ -410,14 +410,14 @@
                                             
                                             <div class="single-product">
                                                 <div class="product-f-image">
-                                                    <img src="img/product-1.jpg" alt="">
+                                                    <img src="img/${product.getImage()}" alt="">
                                                     <div class="product-hover">
-                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                        <a href="CheckIfLoggedIn?selectedProduct=${product.getId()}&productName=${product.getName()}&productPrice=${product.getPrice()}&productImage=${product.getImage()}" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        <a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                                     </div>
                                                 </div>
 
-                                                <h2><a href="single-product.html">${product.getName()}</a></h2>
+                                                <h2><a href="singleProduct.jsp?productName=${product.getName()}&productDesc=${product.getDescription()}&productPrice=${product.getPrice()}&productQuantity=${product.getAvailable()}&productImage=${product.getImage()}">${product.getName()}</a></h2>
 
                                                 <div class="product-carousel-price">
                                                     <ins>$${product.getPrice()}</ins> <del>$100.00</del>
