@@ -135,14 +135,14 @@ public class DatabaseHandler {
             try {
                 openConnection();
        
-                pst = conn.prepareStatement("UPDATE ecommerce.product SET name=? , price=? , available=? , category=? , description=?  WHERE id = ?");
+                pst = conn.prepareStatement("UPDATE ecommerce.product SET name=? , price=? , available=? , category=? , description=? ,image=?  WHERE id = ?");
                 pst.setString(1, product.getName());
                 pst.setInt(2, product.getPrice());
                 pst.setInt(3, product.getAvailable());
                 pst.setString(4, product.getCategory());
                 pst.setString(5, product.getDescription());
-                pst.setInt(6, product.getId());
-                pst.setString(7, product.getImage());
+                pst.setInt(7, product.getId());
+                pst.setString(6, product.getImage());
                 
                 int queryResult = pst.executeUpdate();
                 

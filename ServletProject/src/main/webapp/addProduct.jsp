@@ -181,8 +181,8 @@
                                         <div class="product-f-image">
                                             <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -213,8 +213,8 @@
                                         <div class="product-f-image">
                                             <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -246,8 +246,8 @@
                                         <div class="product-f-image">
                                             <img src="img/${mobile.getImage()}" alt="">
                                             <div class="product-hover">
-                                                <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                             </div>
                                         </div>
 
@@ -285,8 +285,8 @@
                                             <div class="product-f-image">
                                                 <img src="img/${mobile.getImage()}" alt="">
                                                 <div class="product-hover">
-                                                    <a href="editProduct.jsp" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                                    <a href="ProductDetails.jsp?productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
+                                                    <a href="editProduct.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="add-to-cart-link"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                                    <a href="ProductDetails.jsp?productCategory=${mobile.getCategory()}&productId=${mobile.getId()}&productName=${mobile.getName()}&productDesc=${mobile.getDescription()}&productPrice=${mobile.getPrice()}&productQuantity=${mobile.getAvailable()}&productImage=${mobile.getImage()}" class="view-details-link"><i class="fa fa-link"></i> See details</a>
                                                 </div>
                                             </div>
 

@@ -5,11 +5,13 @@
  */
 package com.tnaneen.servletproject;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ehabm
  */
-public class Product {
+public class Product implements Serializable{
     private int id;
     private String name;
     private int price;

@@ -5,13 +5,14 @@
  */
 package com.tnaneen.servletproject;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author ehabm
  */
-public class User {
+public class User implements Serializable {
     private int id;
     private String email;
     private String password;

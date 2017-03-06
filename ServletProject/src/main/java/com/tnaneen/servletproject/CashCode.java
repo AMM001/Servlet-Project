@@ -5,11 +5,13 @@
  */
 package com.tnaneen.servletproject;
 
+import java.io.Serializable;
+
 /**
  *
  * @author bo
  */
-public class CashCode {
+public class CashCode implements Serializable{
     
     private String code;
     private int cash;

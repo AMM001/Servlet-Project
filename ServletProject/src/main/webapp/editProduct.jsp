@@ -73,18 +73,18 @@
                 <h3>Edit Product</h3>
             </div>
             <form class="form-signin" method="post" action="editProductServlet">   
-                
+                <input type="hidden" name="productId" value="${param.productId}" />
                 <center><label>Image</label></center>
-                <input type="file" name="prodImage" value="${sessionScope.product.image}" accept="image/*" class="form-control">
+                <input type="file" name="prodImage" value="${param.productImage}" accept="image/*" class="form-control">
                 
                 <center><label>Name</label></center>
-                <input type="text" class="form-control" name="prodName" value="${sessionScope.product.name}" placeholder="Name"  autofocus="" />
+                <input type="text" class="form-control" name="prodName" value="${param.productName}" placeholder="Name"  autofocus="" />
                 
                 <center><label>Price</label></center>
-                <input type="text" class="form-control" name="prodPrice" value="${sessionScope.product.price}" placeholder="Price" />   
+                <input type="text" class="form-control" name="prodPrice" value="${param.productPrice}" placeholder="Price" />   
                 
                 <center><label>Description</label></center>
-                <input type="text" class="form-control" name="prodDesc" value="${sessionScope.product.description}" placeholder="Description"  autofocus="" />
+                <input type="text" class="form-control" name="prodDesc" value="${param.productDesc}" placeholder="Description"  autofocus="" />
                 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Save Edits</button> 
                 <button class="btn btn-lg btn-primary btn-block">Cancel</button> 

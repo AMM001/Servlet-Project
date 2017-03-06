@@ -5,11 +5,13 @@
  */
 package com.tnaneen.servletproject;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mohamed
  */
-public class CartItem {
+public class CartItem implements Serializable {
     
     private int userId, productId, quantity, bought;
     private String productName;
