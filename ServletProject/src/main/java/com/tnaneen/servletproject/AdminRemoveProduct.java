@@ -38,7 +38,9 @@ public class AdminRemoveProduct extends HttpServlet {
         ///////// 1. Get productId and productCategory from request
         int productID = Integer.parseInt( request.getParameter("productId") );
         String productCategory =  request.getParameter("productCategory") ;
-                 
+            
+        System.out.println("?????? " + productID);
+        
         ///////// 2. Remove from SESSION
         /////////////////  a. get CatList from session
         String listNameInSession = productCategory+"List";

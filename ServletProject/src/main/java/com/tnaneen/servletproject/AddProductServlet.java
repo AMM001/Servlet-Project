@@ -44,6 +44,7 @@ public class AddProductServlet extends HttpServlet {
             //String prodImage = context.getRealPath("/img/" + request.getParameter("prodImage"));
             String prodImage = request.getParameter("prodImage");
             String prodPrice = request.getParameter("prodPrice");
+            int prodQuantity = Integer.parseInt(request.getParameter("prodQuantity"));
             String prodDesc = request.getParameter("prodDesc");
             String prodCateg = request.getParameter("category");
            
@@ -55,7 +56,12 @@ public class AddProductServlet extends HttpServlet {
             prod.setPrice(Integer.parseInt(prodPrice));
             prod.setDescription(prodDesc);
             prod.setCategory(prodCateg);
-            prod.setAvailable(1); //product added -> available
+            prod.setAvailable(prodQuantity); //product added -> available
+            
+            ////////// get max id from db
+            int prodId = new DatabaseHandler().getMaxId();
+            prod.setId(prodId +1);
+            System.out.println("zzzzzzzzzzzz "+ prodId);
             
             if(new DatabaseHandler().insertNewProduct(prod)){
                 HttpSession s = request.getSession();

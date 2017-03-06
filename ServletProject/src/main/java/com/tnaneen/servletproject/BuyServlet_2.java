@@ -17,10 +17,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author rocke
+ * @author mohamed
  */
-@WebServlet(name = "EditProductServlet", urlPatterns = {"/editProductServlet"})
-public class EditProductServlet extends HttpServlet {
+@WebServlet(name = "BuyServlet_2", urlPatterns = {"/BuyServlet_2"})
+public class BuyServlet_2 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,39 +33,43 @@ public class EditProductServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            HttpSession mySession = request.getSession();
-            DatabaseHandler db = new DatabaseHandler();
-            int id = Integer.parseInt(request.getParameter("productId"));
-            String productName = request.getParameter("prodName");
-            String productDesc = request.getParameter("prodDesc");
-            int price = Integer.parseInt(request.getParameter("prodPrice"));
-            String productImage = request.getParameter("prodImage");
-            int available = Integer.parseInt(request.getParameter("prodQuantity"));
-            Product editedProduct = db.getProduct(id);
-            String category = editedProduct.getCategory();
-            ArrayList<Product> products = (ArrayList<Product>) mySession.getAttribute(category + "List");
-            Product newProduct = new Product(id, productName, price, available, category, productDesc, productImage);
-
-            /////////////////   b. looooop to get target product
-            Product selectedProduct = null;
-            for (int i = 0; i < products.size(); i++) {
-                Product current = products.get(i);
-                if (current.getId() == id) {
-                    selectedProduct = current;
-                    break;
-                }
+        
+        
+        ///////// 1. Get productId and productCategory from request
+        int productID = Integer.parseInt( request.getParameter("productId") );
+        String productCategory =  request.getParameter("productCategory") ;
+                 
+        ///////// 2. Remove from SESSION
+        /////////////////  a. get CatList from session
+        String listNameInSession = productCategory+"List";
+        HttpSession currentSession = request.getSession();
+        ArrayList<Product> list = (ArrayList<Product>) currentSession.getAttribute(listNameInSession);
+        
+        /////////////////   b. looooop to get target product
+        Product selectedProduct = null;
+        for(int i=0; i<list.size(); i++)
+        {
+            Product current = list.get(i);
+            if (current.getId() == productID)
+            {
+                selectedProduct = current;
+                break;
             }
-
-            products.remove(selectedProduct);
-
-            db.updateProduct(newProduct);
-            products.add(newProduct);
-            mySession.setAttribute(category + "List", products);
-            response.sendRedirect("addProduct.jsp");
         }
+        
+        //////////////////   c. remove it from SESSION
+        list.remove(selectedProduct);
+        currentSession.setAttribute(listNameInSession, list);
+        
+        ///////// 3. Remove from DB
+         DatabaseHandler databaseHandler = new DatabaseHandler();
+         databaseHandler.removeProduct(selectedProduct);
+            
+           
+        ///////// 4. Redirect to blablabla
+         response.sendRedirect("addProduct.jsp");
+          
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

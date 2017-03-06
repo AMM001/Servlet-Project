@@ -113,7 +113,8 @@
                                 -->
                                 <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
                                 <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
-                                <li><a href="charge.jsp"><i class="fa fa-money"></i> Recharge</a></li>
+                                <li><a href="" data-toggle="modal" data-target="#charge"><i class="fa fa-money"></i> Recharge</a></li>    
+                                    
 
                             </ul>
                         </div>
@@ -322,6 +323,29 @@
                 </div>
             </div>
         </div> <!-- End footer bottom area -->
+        <!-- charge Modal -->
+        <div id="charge" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="form-signin form-inline">
+                            <form method="post" action="RechargeCreditServlet">
+                                <input type="password"  name="RechargingCode" placeholder="Code" required=""/>
+
+                                <input type="submit" value="charge" name="charge" class="button">
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
 
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
