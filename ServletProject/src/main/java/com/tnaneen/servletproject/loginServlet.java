@@ -67,7 +67,7 @@ public class loginServlet extends HttpServlet {
             
         } else {
             
-            response.sendRedirect("logIn.jsp?notlogged=true");
+            response.sendRedirect("Home.jsp?notlogged=true");
         }
         
     }

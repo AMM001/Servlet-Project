@@ -136,7 +136,7 @@ public class CheckIfLoggedIn extends HttpServlet {
             currentSession.setAttribute("addingToCart", 1);
             currentSession.setAttribute("productId", productID);
            
-            response.sendRedirect("logIn.jsp?cartlog=true");
+            response.sendRedirect("Home.jsp?cartlog=true");
             
         }
         

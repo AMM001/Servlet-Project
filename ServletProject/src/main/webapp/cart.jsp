@@ -245,10 +245,8 @@
 
                                                 <td class="product-quantity">
                                                     <div class="quantity buttons_added">
-
-                                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="${cartItem.getQuantity()}" min="0" step="1">
-
-
+                                                        
+                                                        <span class="amount">${cartItem.getQuantity()}</span> 
                                                     </div>
                                                 </td>
 
