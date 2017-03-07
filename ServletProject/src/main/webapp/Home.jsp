@@ -497,7 +497,7 @@
                             <form class="form-signin" method="post" action="loginServlet">       
                                 <h2 class="form-signin-heading">welcome back </h2>
                                 <input style="font-size: 10px;" type="email" class="form-control" name="email" placeholder="Email Address" required="" autofocus="" />
-                                <input type="password" class="form-control" name="password" placeholder="Password" required=""/>      
+                                <input   style="font-size: 10px;" type="password" class="form-control" name="password" placeholder="Password" required=""/>      
                                 <br>
                                 <center> 
                                     <button style="width:100px;" class="btn btn-lg btn-primary" type="submit">Login</button>  
@@ -529,9 +529,9 @@
                                 <label>ADDRESS</label>    
                                 <input type="text" style="font-size: 10px;" class="form-control" name="Address" required="" autofocus="" />
                                 <label>PASSWORD</label>    
-                                <input type="password" class="form-control" name="password" required=""/>  
+                                <input type="password"  style="font-size: 10px;" class="form-control" name="password" required=""/>  
                                 <label>JOB</label>   
-                                <input type="text" class="form-control" name="job" required=""/>  
+                                <input type="text"  style="font-size: 10px;" class="form-control" name="job" required=""/>  
                                 <label>GENDER</label>    
                                 <div class="radio">
                                     <label><input type="radio" name="male" checked>Male</label>
@@ -573,6 +573,69 @@
 
             </div>
         </div>
+        
+        
+        
+          <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>Techno<span>home </span></h2>
+                        <p>Home of Technology </p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <ul>
+                            <li><a href="Home.jsp">Home</a></li>
+                           
+                        </ul>                        
+                    </div>
+                </div>
+                
+             
+                
+         
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+    
+        
+        
+        
+         
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p><./> with Love </p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End footer bottom area -->
+        
+        
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
 

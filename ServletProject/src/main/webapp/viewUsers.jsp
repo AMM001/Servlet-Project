@@ -88,8 +88,17 @@
     <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
     <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                 -->
-                                <li><a href="#"><i class="fa fa-user"></i>My Account</a></li>
-                                <li><a href="#"><i class="fa fa-user"></i> Log out</a></li>
+                                <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="header-right">
+                            <ul class="list-unstyled list-inline">
+
+                                <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
 
                             </ul>
                         </div>
@@ -97,8 +106,8 @@
                 </div>
             </div>
         </div> <!-- End header area -->
-        
-         <!--with Log in-->
+
+        <!--with Log in-->
         <div class="site-branding-area">
             <div class="container">
                 <div class="row">
@@ -110,9 +119,9 @@
                 </div>
             </div>
         </div> <!-- End site branding area -->
-        
-        
-        
+
+
+
         <div class="product-big-title-area">
             <div class="container">
                 <div class="row">
@@ -124,47 +133,48 @@
                 </div>
             </div>
         </div> <!-- End Page title area -->
-        
+
         <div class="col-md-8">
             <div class="product-content-right">
                 <div class="woocommerce">
-                  
-                        <table cellspacing="0" class="shop_table cart">
-                            <thead>
-                                <tr>
 
-                                    <th class="product-thumbnail">Image</th>
-                                    <th class="product-name">UserName</th>
-                                    <th class="product-price">Email</th>
+                    <table cellspacing="0" class="shop_table cart">
+                        <thead>
+                            <tr>
 
-                                </tr>
-                            </thead>
-                            <c:forEach items="${sessionScope.usersList}" var="client" >
-                                <tr class="cart_item">
+                                <th class="product-thumbnail">Image</th>
+                                <th class="product-name">UserName</th>
+                                <th class="product-price">Email</th>
 
-                                    <td class="product-thumbnail">
-                                        <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/default-avatar.png"></a>
-                                    </td>
+                            </tr>
+                        </thead>
+                        <c:forEach items="${sessionScope.usersList}" var="client" >
+                            <tr class="cart_item">
 
-                                    <td class="user-name">
-                                        <span class="amount">${client.getUserName()}</span> 
-                                    </td>
+                                <td class="product-thumbnail">
+                                    <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/default-avatar.png"></a>
+                                </td>
 
-                                    <td class="user-name">
-                                        <span class="amount">${client.getEmail()}</span> 
-                                    </td>
+                                <td class="user-name">
+                                    <span class="amount">${client.getUserName()}</span> 
+                                </td>
 
-                                </tr>
-                            </c:forEach>
+                                <td class="user-name">
+                                    <span class="amount">${client.getEmail()}</span> 
+                                </td>
 
-                        </table>
-                   
+                            </tr>
+                        </c:forEach>
+
+                    </table>
+
                 </div>
             </div>
-       </div> 
-    
+        </div>
         
-   
+
+
+
 
         <!-- Latest jQuery form server -->
         <script src="https://code.jquery.com/jquery.min.js"></script>
@@ -185,6 +195,5 @@
         <!-- Slider -->
         <script type="text/javascript" src="js/bxslider.min.js"></script>
         <script type="text/javascript" src="js/script.slider.js"></script>
-
-    </body>
+ </body>
 </html>

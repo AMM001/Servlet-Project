@@ -87,6 +87,7 @@
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
 
+
         <div class="header-area">
             <div class="container">
                 <div class="row">
@@ -94,7 +95,18 @@
                         <div class="user-menu">
                             <ul>
                                 <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <div class="header-right">
+                            <ul class="list-unstyled list-inline">
+
                                 <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -108,7 +120,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="logo">
-                            <h1><a href="adminHome.html"><img src="img/logo.png"></a></h1>
+                            <h1><a href="adminHome.jsp"><img src="img/logo.png"></a></h1>
                         </div>
                     </div>						
                 </div>
@@ -269,13 +281,53 @@
             </div>
         </div> <!-- End main content area -->
     </div>
+    
+    
+    
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>Techno<span>home </span></h2>
+                        <p>Home of Technology </p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <ul>
+                            <li><a href="adminHome.jsp">Home</a></li>
+
+                        </ul>                        
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div> <!-- End footer top area -->
+
+    
+    
+    
 
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; Coded with ♥. </p>
+                        <p><./> With Love </p>
                     </div>
                 </div>
 
@@ -332,7 +384,7 @@
                             <br><br>
 
                             <button class="btn btn-lg btn-primary btn-block" type="submit">Add</button> 
-                            <button class="btn btn-lg btn-primary btn-block">Cancel</button> 
+                            <button class="btn btn-lg btn-primary btn-block"  data-dismiss="modal">Cancel</button> 
                         </form>
                     </div>
 
@@ -341,7 +393,7 @@
 
         </div>
     </div>
-    
+
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
 

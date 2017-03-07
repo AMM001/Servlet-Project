@@ -31,7 +31,7 @@ public class DatabaseHandler {
 
     private final String URL = "jdbc:mysql://localhost/ecommerce";
     private final String userName = "root";
-    private final String password = "";
+    private final String password = "123";
     private Connection conn;
     private PreparedStatement pst;
     private ResultSet rs;

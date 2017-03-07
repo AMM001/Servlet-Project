@@ -88,8 +88,10 @@
                 
                 <center><label>Description</label></center>
                 <input type="text" class="form-control" name="prodDesc" value="${param.productDesc}" placeholder="Description"  autofocus="" />
-                
+                   <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Save Edits</button> 
+             
+                <br>
                 <a href="addProduct.jsp"><button class="btn btn-lg btn-primary btn-block">Cancel</button></a> 
             </form>
         </div>
