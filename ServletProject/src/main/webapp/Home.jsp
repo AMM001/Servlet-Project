@@ -78,16 +78,22 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> 8ec28309c3d33bb1197b5b83c9cf0e5fd524c113
             .alert {
                 padding: 20px;
                 background-color: #f44336;
                 color: white;
             }
+<<<<<<< HEAD
             
             .success{
                 background-color: #00ff00;
             }
+=======
+>>>>>>> 8ec28309c3d33bb1197b5b83c9cf0e5fd524c113
 
             .closebtn {
                 margin-left: 15px;
