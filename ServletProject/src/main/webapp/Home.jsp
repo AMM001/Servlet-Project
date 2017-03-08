@@ -78,6 +78,31 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+            
+            .success{
+                background-color: #00ff00;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
     </head>
     <body>
@@ -107,6 +132,24 @@
             </c:when>
             <c:otherwise>
                 <!--with log in -->
+                
+                <!--check whether recharge = true or false-->
+                <c:if test="${param.recharged != null}">
+                    <c:choose>
+                        <c:when test="${param.recharged == true}">
+                            <div class="alert success">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Recharged Successfully!</strong> Your Balance is updated :)                  
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="alert">
+                                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                                <strong>Invalid Code!</strong> Please re-enter the code correctly.
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                </c:if>
 
                 <div class="header-area">
                     <div class="container">

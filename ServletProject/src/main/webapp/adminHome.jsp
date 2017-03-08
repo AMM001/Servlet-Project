@@ -70,13 +70,38 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+            
+            .success{
+                background-color: #00ff00;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
     </head>
     <body>
 
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
-
+        
         <div class="header-area">
             <div class="container">
                 <div class="row">

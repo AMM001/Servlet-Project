@@ -65,7 +65,7 @@ public class RechargeCreditServlet extends HttpServlet {
                 
                 ///////////////////////////////4.  Redirect to HomePage
             
-                response.sendRedirect("Home.jsp");
+                response.sendRedirect("Home.jsp?recharged=true");
             
             
             }
@@ -73,7 +73,7 @@ public class RechargeCreditServlet extends HttpServlet {
             else
             {
                 ///////////////////////////////////// Redirect to Home with ERROR msg
-                response.sendRedirect("Home.jsp");
+                response.sendRedirect("Home.jsp?recharged=false");
             }
         }  
     }
