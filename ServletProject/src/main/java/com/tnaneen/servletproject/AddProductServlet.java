@@ -68,7 +68,10 @@ public class AddProductServlet extends HttpServlet {
                 ArrayList<Product> prods = (ArrayList<Product>) s.getAttribute(prod.getCategory() + "List");
                 prods.add(prod);
                 //TODO: check all redirects bta3t el admin
-                response.sendRedirect("addProduct.jsp");
+                response.sendRedirect("addProduct.jsp?added=true");
+            }
+            else{
+                response.sendRedirect("addProduct.jsp?added=false");
             }
         }
     }

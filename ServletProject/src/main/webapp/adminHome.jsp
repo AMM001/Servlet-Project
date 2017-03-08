@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -70,13 +70,56 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+            
+            .success{
+                background-color: #00ff00;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
     </head>
     <body>
 
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
-
+        
+        <!--check whether card add = true or false-->
+        <c:if test="${param.cardAdd != null}">
+            <c:choose>
+                <c:when test="${param.cardAdd == true}">
+                    <div class="alert success">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Recharged Successfully!</strong> Your Balance is updated :)                  
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Invalid Code!</strong> Please re-enter the code correctly.
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+    
         <div class="header-area">
             <div class="container">
                 <div class="row">

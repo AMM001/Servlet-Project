@@ -55,7 +55,7 @@ public class RemoveProduct extends HttpServlet {
         }
         products.remove(j);
         session.setAttribute("MyShoppingCart", products);
-        response.sendRedirect("cart.jsp");
+        response.sendRedirect("cart.jsp?removed=true");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

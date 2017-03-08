@@ -75,7 +75,7 @@
             <form class="form-signin" method="post" action="editProductServlet">   
                 <input type="hidden" name="productId" value="${param.productId}" />
                 <center><label>Image</label></center>
-                <input type="file" name="prodImage" value="${param.productImage}" accept="image/*" class="form-control">
+                <input type="file" name="prodImage" value="${param.productImage}" accept="image/*" class="form-control" required="">
                 
                 <center><label>Name</label></center>
                 <input type="text" class="form-control" name="prodName" value="${param.productName}" placeholder="Name"  autofocus="" />

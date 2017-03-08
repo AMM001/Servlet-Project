@@ -62,9 +62,9 @@ public class EditProductServlet extends HttpServlet {
             products.remove(selectedProduct);
 
             db.updateProduct(newProduct);
-            products.add(newProduct);
+            boolean edited = products.add(newProduct);
             mySession.setAttribute(category + "List", products);
-            response.sendRedirect("addProduct.jsp");
+            response.sendRedirect("addProduct.jsp?edited=" + edited);
         }
     }
 

@@ -78,6 +78,31 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+            
+            .success{
+                background-color: #00ff00;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
 
 
@@ -86,6 +111,60 @@
 
         <!--admin MUST be signed in-->
         <!--check if it's admin and show (page not available) if it's not-->
+        
+        <!--check whether add = true or false-->
+        <c:if test="${param.added != null}">
+            <c:choose>
+                <c:when test="${param.added == true}">
+                    <div class="alert success">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Product Added Successfully!</strong>                 
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Something went wrong!</strong> Please re-enter the product correctly.
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+
+        <!--check whether edit = true or false-->
+        <c:if test="${param.edited != null}">
+            <c:choose>
+                <c:when test="${param.edited == true}">
+                    <div class="alert success">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Product Edited Successfully!</strong>                 
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Something went wrong!</strong> Please re-edit the product correctly.
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
+
+        <!--check whether remove = true or false-->
+        <c:if test="${param.removed != null}">
+            <c:choose>
+                <c:when test="${param.removed == true}">
+                    <div class="alert success">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Product Removed Successfully!</strong>                 
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Something went wrong!</strong> Product is not removed.
+                    </div>
+                </c:otherwise>
+            </c:choose>
+        </c:if>
 
 
         <div class="header-area">
@@ -115,6 +194,7 @@
         </div> <!-- End header area -->
 
         <!--with Log in-->
+        
         <div class="site-branding-area">
             <div class="container">
                 <div class="row">
