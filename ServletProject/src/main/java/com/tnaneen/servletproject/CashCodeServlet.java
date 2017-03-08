@@ -45,7 +45,6 @@ public class CashCodeServlet extends HttpServlet {
            cashArr.add(cc);
            session.setAttribute("cashList",cashArr);
            response.sendRedirect("addCards.jsp");
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
