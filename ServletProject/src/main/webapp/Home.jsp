@@ -106,6 +106,24 @@
         </style>
     </head>
     <body>
+        <c:if test="${param.notlogged==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> Wrong Email or Password 
+            </div>
+        </c:if>
+        <c:if test="${param.cartlog==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> you have to log in first 
+            </div>
+        </c:if>
+        <c:if test="${param.cantsign==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> User already exists! 
+            </div>
+        </c:if>
         <!--no login-->
         <c:choose>
             <c:when test="${sessionScope.user==null}">
