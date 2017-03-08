@@ -7,6 +7,7 @@ package com.tnaneen.servletproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -117,6 +118,17 @@ public class BuyServlet extends HttpServlet {
                             {
                                 databaseHandler.insertNewCartItem(myNewCart.get(i));
                             }
+                            
+                            
+                            //////////////////// order history
+                            
+                            int max = databaseHandler.getMaxOrderId();
+                            
+                            for (int i=0; i<myNewCart.size(); i++)
+                            {
+                                databaseHandler.insertOrder(currentUser.getId(), max +1, myNewCart.get(i).getProductId() , new Date(new java.util.Date().getTime()), myNewCart.get(i).getProductName(),  myNewCart.get(i).getQuantity(),  myNewCart.get(i).getProductPrice());
+                            }
+                            //////////////////////////////////
                             
                             //////////////////////////////////////// 5. (d) Remove cart from the current SESSION
                             session.removeAttribute("MyShoppingCart");

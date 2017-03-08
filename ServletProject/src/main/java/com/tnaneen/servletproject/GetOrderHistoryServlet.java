@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author mohamed
  */
-@WebServlet(name = "BuyServlet_2", urlPatterns = {"/BuyServlet_2"})
-public class BuyServlet_2 extends HttpServlet {
+@WebServlet(name = "GetOrderHistoryServlet", urlPatterns = {"/GetOrderHistoryServlet"})
+public class GetOrderHistoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,41 +34,20 @@ public class BuyServlet_2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        ///////////// 1. Get All user info from the request
+        int userid = Integer.parseInt( request.getParameter("userId") );
+        String username = request.getParameter("userName") ;
         
-        ///////// 1. Get productId and productCategory from request
-        int productID = Integer.parseInt( request.getParameter("productId") );
-        String productCategory =  request.getParameter("productCategory") ;
-                 
-        ///////// 2. Remove from SESSION
-        /////////////////  a. get CatList from session
-        String listNameInSession = productCategory+"List";
-        HttpSession currentSession = request.getSession();
-        ArrayList<Product> list = (ArrayList<Product>) currentSession.getAttribute(listNameInSession);
+        ///////////// 2. Use userID to get user's order history
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        ArrayList<OrderItem> items =   databaseHandler.getOrders(userid);
         
-        /////////////////   b. looooop to get target product
-        Product selectedProduct = null;
-        for(int i=0; i<list.size(); i++)
-        {
-            Product current = list.get(i);
-            if (current.getId() == productID)
-            {
-                selectedProduct = current;
-                break;
-            }
-        }
-        
-        //////////////////   c. remove it from SESSION
-        list.remove(selectedProduct);
-        currentSession.setAttribute(listNameInSession, list);
-        
-        ///////// 3. Remove from DB
-         DatabaseHandler databaseHandler = new DatabaseHandler();
-         databaseHandler.removeProduct(selectedProduct);
-            
-           
-        ///////// 4. Redirect to blablabla
-         response.sendRedirect("addProduct.jsp");
-          
+        ///////////// 3. put the history on session
+         HttpSession session = request.getSession(true);
+         session.setAttribute("orderHistory", items);
+         
+        ///////////// 4. redirect to userDetails JSP
+        response.sendRedirect("orderHistory.jsp?username="+username);
         
     }
 

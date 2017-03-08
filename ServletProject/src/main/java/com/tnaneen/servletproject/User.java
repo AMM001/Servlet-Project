@@ -19,7 +19,8 @@ public class User implements Serializable {
     private String userName;
     private String address;
     private int creditLimit;
-    private Date birthday;
+    private String job;
+    private String gender;
     private int isAdmin;
 
     public User() {
@@ -73,20 +74,28 @@ public class User implements Serializable {
         this.creditLimit = creditLimit;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public int getIsAdmin() {
         return isAdmin;
     }
 
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
     
 }

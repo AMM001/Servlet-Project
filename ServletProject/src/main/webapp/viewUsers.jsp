@@ -145,7 +145,8 @@
                                 <th class="product-thumbnail">Image</th>
                                 <th class="product-name">UserName</th>
                                 <th class="product-price">Email</th>
-
+                                <th class="product-price">Cash Limit</th>
+                                <th class="product-price">History</th>
                             </tr>
                         </thead>
                         <c:forEach items="${sessionScope.usersList}" var="client" >
@@ -162,6 +163,14 @@
                                 <td class="user-name">
                                     <span class="amount">${client.getEmail()}</span> 
                                 </td>
+                                
+                                <td class="user-name">
+                                    <span class="amount">${client.getCreditLimit()}</span> 
+                                </td>
+                                
+                                <td class="product-thumbnail">
+                                    <a href="GetOrderHistoryServlet?userId=${client.getId()}&userName=${client.getUserName()}">Go To History</a>
+                                </td>m
 
                             </tr>
                         </c:forEach>

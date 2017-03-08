@@ -534,8 +534,8 @@
                                 <input type="text"  style="font-size: 10px;" class="form-control" name="job" required=""/>  
                                 <label>GENDER</label>    
                                 <div class="radio">
-                                    <label><input type="radio" name="male" checked>Male</label>
-                                    <label><input type="radio" name="female" >Female</label>
+                                    <label><input type="radio" name="gender" value="male" checked>Male</label>
+                                    <label><input type="radio" name="gender" value="female" >Female</label>
                                 </div>
                                 <!--
                                 <input type="date" class="form-control" name="birthday" placeholder=" autofocus="" />

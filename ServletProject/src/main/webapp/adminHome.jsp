@@ -152,11 +152,44 @@
         </div>
 
         <div style="padding:50px">
-            <h2><a href="addCards.jsp" class="fa fa-shopping-cart">Cash Cards<i ></i></a></h2>
+            <h2><a href="" data-toggle="modal" data-target="#addCard" class="fa fa-shopping-cart">Cash Cards<i ></i></a></h2>
         </div>
     </center>
 
+    <!-- charge Modal -->
+    <div id="addCard" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="form-signin form-inline">
+                        <div class="wrapper">
+                            <div>
+                                <h3>Add New Cards</h3>
+                            </div>
+                            <form class="form-signin" method="post" action="CashCodeServlet">       
+                                <label>Card</label>
+                                <input type="text" class="form-control" name="code" placeholder="Card" required="" autofocus="" />
+
+                                <label>Value</label>
+                                <input type="text" class="form-control" name="cash" placeholder="Value" required=""/>   
+                                <br><br>
+
+                                <button style="width:100px;" class="btn btn-lg btn-primary " type="submit">Add</button> 
+                                <button style="width:100px;" class="btn btn-lg btn-danger " data-dismiss="modal">Cancel</button> 
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

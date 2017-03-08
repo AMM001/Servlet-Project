@@ -62,6 +62,7 @@ public class loginServlet extends HttpServlet {
                     
                 }
             } else {
+                session.setAttribute("user", exists);
                 response.sendRedirect("GetAllAdminData");
             }
             

@@ -31,7 +31,7 @@ public class DatabaseHandler {
 
     private final String URL = "jdbc:mysql://localhost/ecommerce";
     private final String userName = "root";
-    private final String password = "123";
+    private final String password = "";
     private Connection conn;
     private PreparedStatement pst;
     private ResultSet rs;
@@ -356,12 +356,13 @@ public class DatabaseHandler {
     public boolean registerUser(User user) {
         try {
             openConnection();
-            pst = conn.prepareStatement("INSERT INTO ecommerce.USER (EMAIL,PASSWORD,USERNAME,ADDRESS) VALUES(?,?,?,?)");
+            pst = conn.prepareStatement("INSERT INTO ecommerce.USER (EMAIL,PASSWORD,USERNAME,ADDRESS,JOB,GENDER) VALUES(?,?,?,?,?,?)");
             pst.setString(1, user.getEmail());
             pst.setString(2, user.getPassword());
             pst.setString(3, user.getUserName());
             pst.setString(4, user.getAddress());
-            //pst.setDate(5, (Date) user.getBirthday());
+            pst.setString(5, user.getJob());
+            pst.setString(6, user.getGender());
             System.out.println("7alawa");
             pst.executeUpdate();
             System.out.println("not t7alawa");
@@ -390,7 +391,8 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday"));
+                user.setGender(rs.getString("gender"));
+                user.setJob(rs.getString("job"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
             }
@@ -418,7 +420,8 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setBirthday(rs.getDate("birthday"));
+                user.setJob(rs.getString("job"));
+                user.setGender(rs.getString("gender"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
                 users.add(user);
@@ -440,7 +443,6 @@ public class DatabaseHandler {
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
-            //pst.setDate(4, (Date) user.getBirthday());
             pst.setString(4, user.getEmail());
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -567,4 +569,92 @@ public class DatabaseHandler {
     }
     
     ///////////////////////
+    
+    ////////////////////////// DB Updates for 7/3/2017
+    public boolean insertOrder (int userId, long orderId, int prodId, Date orderDate, String prodName, int prodQuantity, int prodPrice)
+    {
+         try {
+                openConnection();
+       
+                pst = conn.prepareStatement("INSERT INTO ecommerce.ordersHistory (userId, orderId, productId, orderDate, productName, productQuantity, productprice) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                pst.setInt(1, userId);
+                pst.setLong(2, orderId);
+                pst.setInt(3, prodId);
+                pst.setDate(4,orderDate);
+                pst.setString(5,prodName);
+                pst.setInt(6, prodQuantity);
+                pst.setInt(7, prodPrice);
+             
+                int queryResult = pst.executeUpdate();
+                
+                if (queryResult != 0)
+                {
+                    System.out.println("New OrderItem Added Successfully");
+                    return true;
+                }
+              
+            } catch (SQLException ex) {
+                
+                System.err.println("ERROR:: DatabaseHandler.insertOrder()" + ex.toString());
+                
+            } finally {
+                closeConnection();
+            }
+            
+            System.out.println("OrderItem is NOT added!");
+            return false;
+             
+    }
+    
+    
+    public ArrayList<OrderItem> getOrders (int userId)
+    {
+        ArrayList<OrderItem> orderItems = new ArrayList<>();
+    
+        try {
+            openConnection();
+            
+            pst = conn.prepareStatement("select * from ecommerce.ordersHistory WHERE userId = ? order by (orderid)");
+            pst.setInt(1,userId);
+             
+            rs = pst.executeQuery();
+            while(rs.next())
+             {
+                  OrderItem item = new OrderItem(rs.getInt(1), rs.getInt(2),rs.getInt(3) , rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
+                  orderItems.add(item);
+                  System.out.println("com.tnaneen.servletproject.DatabaseHandler.getOrders()>>> Added Successfully ");
+             }
+        } catch (SQLException ex) {
+            
+            System.out.println("ERROR :: DatabaseHandler.getOrders()" + ex.toString());
+            
+        }
+         
+        return orderItems;
+    }
+    
+    
+     public int getMaxOrderId() {
+        int id = -1;
+        try {
+            openConnection();
+            pst = conn.prepareStatement("SELECT max(orderid) FROM ecommerce.ordersHistory");
+           
+            rs = pst.executeQuery();
+           
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            closeConnection();
+        }
+       return  id;
+    }
+    
+   
+    
 }

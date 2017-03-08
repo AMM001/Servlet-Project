@@ -44,18 +44,19 @@ public class registerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String username = request.getParameter("userName");
-        String address = request.getParameter("address");
+        String address = request.getParameter("Address");
+        String job=request.getParameter("job");
+        String gender=request.getParameter("gender");
         RequestDispatcher rd=request.getRequestDispatcher("getAllProductsServlet"); 
-        //String birthday = request.getParameter("birthday");
-        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //Date startDate = sdf.parse(birthday);
         DatabaseHandler dbh = new DatabaseHandler();
         User user = new User();
         user.setEmail(email);
         user.setPassword(password);
         user.setUserName(username);
         user.setAddress(address);
-        //user.setBirthday(null);
+        user.setJob(job);
+        user.setGender(gender);
+        
         if(dbh.registerUser(user))
         {
             HttpSession session=request.getSession(true);
