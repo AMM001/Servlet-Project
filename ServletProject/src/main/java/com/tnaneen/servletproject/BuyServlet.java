@@ -127,6 +127,7 @@ public class BuyServlet extends HttpServlet {
                             for (int i=0; i<myNewCart.size(); i++)
                             {
                                 databaseHandler.insertOrder(currentUser.getId(), max +1, myNewCart.get(i).getProductId() , new Date(new java.util.Date().getTime()), myNewCart.get(i).getProductName(),  myNewCart.get(i).getQuantity(),  myNewCart.get(i).getProductPrice());
+                                System.out.println(">> insert in OrderHistory >> " +  currentUser.getId());
                             }
                             //////////////////////////////////
                             

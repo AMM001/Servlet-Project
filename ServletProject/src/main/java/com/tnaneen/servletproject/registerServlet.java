@@ -50,6 +50,7 @@ public class registerServlet extends HttpServlet {
         RequestDispatcher rd=request.getRequestDispatcher("getAllProductsServlet"); 
         DatabaseHandler dbh = new DatabaseHandler();
         User user = new User();
+        user.setId(dbh.getMaxUserId()+1);
         user.setEmail(email);
         user.setPassword(password);
         user.setUserName(username);
@@ -68,7 +69,7 @@ public class registerServlet extends HttpServlet {
         }
         else
         {
-            response.sendRedirect("sign up.jsp?cantsign=true");
+            response.sendRedirect("Home.jsp?cantsign=true");
         }
     }
 

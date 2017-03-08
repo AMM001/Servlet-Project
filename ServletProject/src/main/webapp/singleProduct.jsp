@@ -9,7 +9,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Product Page - Ustora Demo</title>
+        <title>Product Page</title>
 
         <!-- Google Fonts -->
         <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -87,11 +87,23 @@
                         <div class="user-menu">
                             <ul>
                                 <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
-                                <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+                              
 
                             </ul>
                         </div>
                     </div>
+                    
+                    
+                            <div class="col-md-4">
+                                <div class="header-right">
+                                    <ul class="list-unstyled list-inline">
+
+                                        <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
                 </div>
             </div>
         </div> 
@@ -128,18 +140,8 @@
                     </div> 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.jsp">Home</a></li>
 
-                            <div class="dropdown">
-                                <button class="dropbtn">Categories</button>
-                                <div class="dropdown-content">
-                                    <a href="getAllProductsServlet?category=mobiles">Mobile phone</a>
-                                    <a href="getAllProductsServlet?category=laptops">Laptops</a>
-                                    <a href="getAllProductsServlet?category=gaming">Gaming</a>
-                                    <a href="getAllProductsServlet?category=headphones">headphones</a>
-
-                                </div>
-                            </div>
                             <li ><a href="cart.jsp">MyCart</a></li>		
 
                         </ul>
@@ -229,7 +231,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <div class="copyright">
-                            <p>&copy; coded with ♥ </p>
+                            <p><./> With Love  </p>
                         </div>
                     </div>
 

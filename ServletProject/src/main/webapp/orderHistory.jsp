@@ -1,6 +1,7 @@
 
 
 
+<%@page import="java.util.Date"%>
 <%@page import="com.tnaneen.servletproject.OrderItem"%>
 <%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -76,9 +77,41 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            
+            	.print {
+			  transition: all 200ms;
+			  font-size: 25px;
+			  color : #bbbbbb;
+			  background-image : url('images/print.png');
+			  background-repeat : no-repeat;
+			  padding: 2px 2px 2px 25px;
+			  text-decoration: none;
+			  border-radius : 5px;
+			 background-color : #fff ;
+			}
+			
+			.print:hover 
+			{
+			 border : 3px solid blue;
+			  color: black;
+			  }
         </style>
+            
+            <script type="text/javascript">
+
+			function printDiv(divName) {
+			 //alert('s');
+			 var printContents = document.getElementById(divName).innerHTML;
+			 w=window.open();
+			 w.document.write(printContents);
+			 w.print();
+			 w.close();
+			}
+
+	</script>
+	
     </head>
-    <body>
+    <body >
         <div class="header-area">
             <div class="container">
                 <div class="row">
@@ -135,25 +168,40 @@
                 </div>
             </div>
         </div> <!-- End Page title area -->
-
-        <h2 style="color:blueviolet;">For ${param.username}</h2>
+<div id="print-content" style="margin-left : 650px;">
+    <center> <form>
+			<input type="button" onclick="printDiv('orders')" value="Print History!" class="print"/>
+		</form></center>
+		</div>
+    <center id='orders'>
+        <h3 style="color:blueviolet;">Order History for ${param.username}</h3>
         <c:choose>
             <c:when test="${sessionScope.orderHistory.size()==0}">
-                <h1 style="color:red">No orders found for this users</h1>
+                <h1 style="color:red">No orders History found for this users</h1>
 
             </c:when>
             <c:otherwise>
-                <%
-                    ArrayList<OrderItem> items = (ArrayList<OrderItem>) session.getAttribute("orderHistory");
-                    int orderId = items.get(0).getOrderId();
+            <%
+                int counter = Integer.parseInt(session.getAttribute("NumOfOrders").toString());
+                System.out.println("<<<<>>>>> " + counter);
 
-                %>
-                <p>Order #: ${order.getId()} , Date : ${order.getDate()}</p>
-                <div class="col-md-8">
+                for (int i = 0; i < counter; i++) 
+                {
+                    String listName = "Order#"+i;
+                    System.out.println(":::::::" + listName);
+                   ArrayList<OrderItem> orderItems = (ArrayList<OrderItem>) session.getAttribute(listName);
+                   
+                   if (orderItems == null)
+                    System.out.println("......NULL.....");
+
+                    int total =0;
+            %> 
+            <p>Order #: <%= orderItems.get(0).getOrderId() %> , Date :<%= orderItems.get(0).getOrderDate() %> </p>
+               <!-- <div class="col-md-8">
                     <div class="product-content-right">
                         <div class="woocommerce">
-
-                            <table cellspacing="0" class="shop_table cart">
+                            
+                   -->         <table cellspacing="0" class="shop_table cart" style='width:80%' >
                                 <thead>
                                     <tr>
                                         <th class="product-price">Product Name</th>
@@ -161,75 +209,61 @@
                                         <th class="product-price">Price</th>
                                     </tr>
                                 </thead>
+                            <%
+                                for (int j=0; j<orderItems.size(); j++)
+                                {
+                                     total += orderItems.get(j).getProdQuantity() * orderItems.get(j).getProdPrice();
+                            %>
+                            
+                            <tr>
+                                <td><%= orderItems.get(j).getProdName() %></td>
+                                <td><%= orderItems.get(j).getProdQuantity()%></td>
+                                <td><%= orderItems.get(j).getProdPrice()%></td>
+                            </tr>
+                            
+                             <%
+                                }
+                            %>
+                            <tr>
+                                <td colspan="2">Total</td>
+                                <td><%= "$"+total %></td>
+                                
+                            </tr>
+                            </table>  
+                            <hr>
+            <%
+                session.removeAttribute(listName);
+                total=0;
+                }
+            session.removeAttribute("NumOfOrders");
+            %>
+                 <!--       </div>
+                    </div>
+                </div> -->
+            </c:otherwise>
+        </c:choose>
+        </center>
+            
+            
+        <!-- Latest jQuery form server -->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
 
-                                <c:forEach items="${sessionScope.orderHistory}" var="order">
-                                    <c:set var="test1" value="${order.getOrderId()}"></c:set>
-                                    <c:choose>
-                                        <c:when test="orderId==${order.getOrderId()}">
-                                            <tr class="cart_item">
-                                                <td class="user-name">
-                                                    <span class="amount">${order.getProdName()}</span> 
-                                                </td>
-                                                <td class="user-name">
-                                                    <span class="amount">${order.getProdQuantity()}</span> 
-                                                </td>
-                                                <td class="user-name">
-                                                    <span class="amount">${order.getProdPrice()}</span> 
-                                                </td>
+        <!-- Bootstrap JS form CDN -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-                                            </tr>
+        <!-- jQuery sticky menu -->
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
 
-                                        </c:when>
-                                        <c:otherwise>
-                                        </table>
-                                        <%                                                
-                                            orderId = Integer.parseInt(pageContext.getAttribute("test1").toString());
+        <!-- jQuery easing -->
+        <script src="js/jquery.easing.1.3.min.js"></script>
 
-                                        %>
-                                        <p>Order #: ${order.getId()} , Date : ${order.getDate()}</p>
-                                        <div class="col-md-8">
-                                            <div class="product-content-right">
-                                                <div class="woocommerce">
+        <!-- Main Script -->
+        <script src="js/main.js"></script>
 
-                                                    <table cellspacing="0" class="shop_table cart">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="product-price">Product Name</th>
-                                                                <th class="product-price">Quantity</th>
-                                                                <th class="product-price">Price</th>
-                                                            </tr>
-                                                        </thead>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                        </div>
-                                    </div>
-                                </div
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-
-
-
-
-
-                    <!-- Latest jQuery form server -->
-                    <script src="https://code.jquery.com/jquery.min.js"></script>
-
-                    <!-- Bootstrap JS form CDN -->
-                    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-                    <!-- jQuery sticky menu -->
-                    <script src="js/owl.carousel.min.js"></script>
-                    <script src="js/jquery.sticky.js"></script>
-
-                    <!-- jQuery easing -->
-                    <script src="js/jquery.easing.1.3.min.js"></script>
-
-                    <!-- Main Script -->
-                    <script src="js/main.js"></script>
-
-                    <!-- Slider -->
-                    <script type="text/javascript" src="js/bxslider.min.js"></script>
-                    <script type="text/javascript" src="js/script.slider.js"></script>
-                    </body>
-                    </html>
+        <!-- Slider -->
+        <script type="text/javascript" src="js/bxslider.min.js"></script>
+        <script type="text/javascript" src="js/script.slider.js"></script>
+        <script type="text/javascript" src="js/print.js"></script>
+    </body>
+</html>

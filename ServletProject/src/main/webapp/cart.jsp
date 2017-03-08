@@ -1,3 +1,5 @@
+<%@page import="com.tnaneen.servletproject.CartItem"%>
+<%@page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
@@ -112,24 +114,24 @@
     <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                                 -->
                                 <li><a href="Editacc.jsp"><i class="fa fa-user"></i>My Account</a></li>
-                        
+
                                 <li><a href="" data-toggle="modal" data-target="#charge"><i class="fa fa-money"></i> Recharge</a></li>    
-                                    
+
 
                             </ul>
                         </div>
                     </div>
-                    
-                          <div class="col-md-4">
-                                <div class="header-right">
-                                    <ul class="list-unstyled list-inline">
 
-                                        <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+                    <div class="col-md-4">
+                        <div class="header-right">
+                            <ul class="list-unstyled list-inline">
 
-                                    </ul>
-                                </div>
-                            </div>
-                    
+                                <li><a href="logoutServlet"><i class="fa fa-user"></i> Log out</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div> <!-- End header area -->
@@ -208,6 +210,7 @@
             <div class="container">
                 <div class="row">
 
+                    <center>
                     <div class="col-md-8">
                         <div class="product-content-right">
                             <div class="woocommerce">
@@ -215,21 +218,23 @@
                                     <table cellspacing="0" class="shop_table cart">
                                         <thead>
                                             <tr>
-                                                <th class="product-remove">&nbsp;</th>
-                                                <th class="product-thumbnail">&nbsp;</th>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-price">Price</th>
+                                                <th class="product-thumbnail">Product Image</th>
+                                                <th class="product-name">Product Name</th>
+                                                <th class="product-price">Product Price</th>
                                                 <th class="product-quantity">Quantity</th>
-                                                <th class="product-subtotal">Total</th>
+                                                <th class="product-subtotal">Sub-Total</th>
+                                                <th class="product-remove">Remove</th>
+
                                             </tr>
                                         </thead>
-                                        <%int total = 0; %>
+                                        <%
+                                            int total = 0;
+                                            ArrayList<CartItem> items = (ArrayList<CartItem>) session.getAttribute("MyShoppingCart");
+                                            int counter = 0;
+                                        %>
                                         <c:forEach items="${sessionScope.MyShoppingCart}" var="cartItem" >
                                             <%--<% total+=Integer.parseInt(request.getParameter("productPrice")); %>--%>
                                             <tr class="cart_item">
-                                                <td class="product-remove">
-                                                    <a title="Remove this item" class="remove" href="RemoveProduct?removeId=${cartItem.getProductId()}">remove</a> 
-                                                </td>
 
                                                 <td class="product-thumbnail">
                                                     <a href=""><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="img/${cartItem.getProductImage()}"></a>
@@ -246,18 +251,33 @@
                                                 <td class="product-quantity">
                                                     <div class="quantity buttons_added">
 
-                                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="${cartItem.getQuantity()}" min="0" step="1">
-
-
+                                                        <span class="amount">${cartItem.getQuantity()}</span> 
                                                     </div>
                                                 </td>
 
                                                 <td class="product-subtotal">
-                                                    <span class="amount">${cartItem.getProductPrice()*cartItem.getQuantity()}</span> 
+                                                    <span class="amount">$${cartItem.getProductPrice()*cartItem.getQuantity()}</span> 
                                                 </td>
-                                            </tr>
+                                                <td class="product-remove">
+                                                    <a title="Remove this item" class="remove" href="RemoveProduct?removeId=${cartItem.getProductId()}">remove</a> 
+                                                </td>
 
+                                            </tr>
+                                            <%
+                                                total += items.get(counter).getQuantity() * items.get(counter).getProductPrice();
+                                                counter++;
+
+                                            %>
                                         </c:forEach>
+                                        <tr>
+                                            <td class="product-subtotal" colspan="4">
+                                                <span class="amount">Total</span> 
+                                            </td>
+                                            <td class="product-subtotal" colspan="2">
+                                                <span class="amount"><%= "$"+total%></span> 
+                                            </td>
+
+                                        </tr>
                                         <c:if test="${sessionScope.MyShoppingCart.size()>0}" >
                                             <tr>
                                                 <td class="actions" colspan="6">
@@ -271,7 +291,6 @@
 
                                     </table>
                                 </form>
-                                <a href="#" class="button" value="Save">Save</a>
                                 <c:if test="${param.outOfStock==true}" >
 
                                     <c:forEach items="${sessionScope.outOfStockProducts}" var="item">
@@ -289,75 +308,54 @@
                                         <strong>Sorry!</strong> You don't have enough money
                                     </div>
                                 </c:if>
-                                <div class="cart-collaterals">
-
-
-
-                                    <div class="cart_totals ">
-                                        <h2>Cart Totals</h2>
-
-                                        <table cellspacing="0">
-                                            <tbody>
-                                                <tr class="shipping">
-                                                    <th>Shipping and Handling</th>
-                                                    <td>Free Shipping</td>
-                                                </tr>
-
-                                                <tr class="order-total">
-                                                    <th>Order Total</th>
-                                                    <td><strong><span class="amount"><% out.println(total);%></span></strong> </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
+                                
                             </div>                        
                         </div>                    
                     </div>
+                    </center>
                 </div>
             </div>
         </div>
 
 
-              
-          <div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-about-us">
-                        <h2>Techno<span>home </span></h2>
-                        <p>Home of Technology </p>
-                        <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+        <div class="footer-top-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-about-us">
+                            <h2>Techno<span>home </span></h2>
+                            <p>Home of Technology </p>
+                            <div class="footer-social">
+                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                                <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="Home.jsp">Home</a></li>
-                           
-                        </ul>                        
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="footer-menu">
+                            <h2 class="footer-wid-title">User Navigation </h2>
+                            <ul>
+                                <li><a href="Home.jsp">Home</a></li>
+
+                            </ul>                        
+                        </div>
                     </div>
+
+
+
+
                 </div>
-                
-             
-                
-         
             </div>
-        </div>
-    </div> <!-- End footer top area -->
-    
-        
-                                               
-                                                
+        </div> <!-- End footer top area -->
+
+
+
+
 
         <div class="footer-bottom-area">
             <div class="container">

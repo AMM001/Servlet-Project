@@ -78,9 +78,47 @@
             .dropdown:hover .dropbtn {
                 background-color: #5A87CA;
             }
+            .alert {
+                padding: 20px;
+                background-color: #f44336;
+                color: white;
+            }
+
+            .closebtn {
+                margin-left: 15px;
+                color: white;
+                font-weight: bold;
+                float: right;
+                font-size: 22px;
+                line-height: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+            .closebtn:hover {
+                color: black;
+            }
         </style>
     </head>
     <body>
+        <c:if test="${param.notlogged==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> Wrong Email or Password 
+            </div>
+        </c:if>
+        <c:if test="${param.cartlog==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> you have to log in first 
+            </div>
+        </c:if>
+        <c:if test="${param.cantsign==true}" >
+            <div class="alert">
+                <span class="closebtn" onclick="this.parentElement.style.display = 'none';">&times;</span> 
+                <strong>Sorry!</strong> User already exists! 
+            </div>
+        </c:if>
         <!--no login-->
         <c:choose>
             <c:when test="${sessionScope.user==null}">
@@ -354,63 +392,7 @@
             </div>
             <!-- ./Slider -->
         </div> <!-- End slider area -->
-
-        <div class="promo-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-promo promo1">
-                            <i class="fa fa-refresh"></i>
-                            <p>30 Days return</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-promo promo2">
-                            <i class="fa fa-truck"></i>
-                            <p>Free shipping</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-promo promo3">
-                            <i class="fa fa-lock"></i>
-                            <p>Secure payments</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-promo promo4">
-                            <i class="fa fa-gift"></i>
-                            <p>New products</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End promo area -->
-
-
-
-
-        <div class="brands-area">
-            <div class="zigzag-bottom"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="brand-wrapper">
-                            <div class="brand-list">
-                                <img src="img/brand1.png" alt="">
-                                <img src="img/brand2.png" alt="">
-                                <img src="img/brand3.png" alt="">
-                                <img src="img/brand4.png" alt="">
-                                <img src="img/brand5.png" alt="">
-                                <img src="img/brand6.png" alt="">
-                                <img src="img/brand1.png" alt="">
-                                <img src="img/brand2.png" alt="">                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- End brands area -->
+         
 
         <div class="maincontent-area">
             <div class="zigzag-bottom"></div>
@@ -485,6 +467,58 @@
                 </div>
             </div>
         </div> <!-- End main content area -->
+        <div class="brands-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="brand-wrapper">
+                            <div class="brand-list">
+                                <img src="img/brand1.png" alt="">
+                                <img src="img/brand2.png" alt="">
+                                <img src="img/brand3.png" alt="">
+                                <img src="img/brand4.png" alt="">
+                                <img src="img/brand5.png" alt="">
+                                <img src="img/brand6.png" alt="">
+                                <img src="img/brand1.png" alt="">
+                                <img src="img/brand2.png" alt="">                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End brands area -->
+        <div class="promo-area">
+            <div class="zigzag-bottom"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo1">
+                            <i class="fa fa-refresh"></i>
+                            <p>30 Days return</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo2">
+                            <i class="fa fa-truck"></i>
+                            <p>Free shipping</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo3">
+                            <i class="fa fa-lock"></i>
+                            <p>Secure payments</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo4">
+                            <i class="fa fa-gift"></i>
+                            <p>New products</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- End promo area -->
         <!-- Modal -->
         <div id="logIn" class="modal fade" role="dialog">
             <div class="modal-dialog">

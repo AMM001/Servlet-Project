@@ -170,7 +170,7 @@
                                 
                                 <td class="product-thumbnail">
                                     <a href="GetOrderHistoryServlet?userId=${client.getId()}&userName=${client.getUserName()}">Go To History</a>
-                                </td>m
+                                </td>
 
                             </tr>
                         </c:forEach>

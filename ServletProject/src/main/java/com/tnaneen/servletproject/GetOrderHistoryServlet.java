@@ -37,17 +37,64 @@ public class GetOrderHistoryServlet extends HttpServlet {
         ///////////// 1. Get All user info from the request
         int userid = Integer.parseInt( request.getParameter("userId") );
         String username = request.getParameter("userName") ;
+        HttpSession session = request.getSession(true);
+        
+        System.out.println("com.tnaneen.servletproject.GetOrderHistoryServlet.processRequest()>> " + userid+" # " + username);
         
         ///////////// 2. Use userID to get user's order history
         DatabaseHandler databaseHandler = new DatabaseHandler();
         ArrayList<OrderItem> items =   databaseHandler.getOrders(userid);
         
+        System.out.println("com.tnaneen.servletproject.GetOrderHistoryServlet.processRequest()>> Ordered Items are : " + items.size());
+        
+          if (items.size() != 0)
+          {
+               ////--------------------------------------------------
+        int currentID =  items.get(0).getOrderId();
+        int counter = 0;
+        ArrayList<OrderItem> singleOrder = new ArrayList<>();
+        
+        for (int i=0; i<items.size(); i++)
+        {
+            System.out.println("||>"+i+" || "+currentID +" ||| "+ items.get(i).getOrderId()+" ||");
+            if (currentID == items.get(i).getOrderId())
+            {
+            System.out.println("|if|>"+i+" || "+currentID +" ||| "+ items.get(i).getOrderId()+" ||");
+                singleOrder.add(items.get(i));
+             
+            System.out.println("|if|>"+i+" || "+currentID +" ||| "+ items.get(i).getOrderId()+" ||");
+            }
+            else
+            {
+                session.setAttribute("Order#"+counter, singleOrder);
+                System.out.println("?????"+currentID+"?????? " + singleOrder.toString());
+                counter++;
+                currentID = items.get(i).getOrderId();
+                singleOrder = new ArrayList<>();
+                singleOrder.add(items.get(i));
+            System.out.println("|else|>"+i+" || "+currentID +" ||| "+ items.get(i).getOrderId()+" ||");
+            }
+          
+        }
+         
+        session.setAttribute("Order#"+counter, singleOrder);
+        
+        session.setAttribute("NumOfOrders", counter+1);
+        
+        ////-------------------------------------------------------
         ///////////// 3. put the history on session
-         HttpSession session = request.getSession(true);
+         
          session.setAttribute("orderHistory", items);
          
         ///////////// 4. redirect to userDetails JSP
         response.sendRedirect("orderHistory.jsp?username="+username);
+       
+          
+          }else{
+          session.setAttribute("NumOfOrders", 0);
+               response.sendRedirect("orderHistory.jsp?username="+username);
+          
+          }
         
     }
 

@@ -251,14 +251,14 @@ public class DatabaseHandler {
             try {
                 openConnection();
        
-                pst = conn.prepareStatement("INSERT INTO ecommerce.shoppingcart (userid,productid,quantity,productname,productprice,bought) VALUES (?, ?, ?, ?, ?, ?)");
+                pst = conn.prepareStatement("INSERT INTO ecommerce.shoppingcart (userid,productid,quantity,productname,productprice,bought,productImage) VALUES (?,?, ?, ?, ?, ?, ?)");
                 pst.setInt(1, cartItem.getUserId());
                 pst.setInt(2, cartItem.getProductId());
                 pst.setInt(3, cartItem.getQuantity());
                 pst.setInt(6, cartItem.getBought());
                 pst.setString(4, cartItem.getProductName());
                 pst.setInt(5, cartItem.getProductPrice());
-                //pst.setString(7, cartItem.getProductName());
+                pst.setString(7, cartItem.getProductImage());
                
              
                 int queryResult = pst.executeUpdate();
@@ -363,6 +363,7 @@ public class DatabaseHandler {
             pst.setString(4, user.getAddress());
             pst.setString(5, user.getJob());
             pst.setString(6, user.getGender());
+            //pst.setDate(5, (Date) user.getBirthday());
             System.out.println("7alawa");
             pst.executeUpdate();
             System.out.println("not t7alawa");
@@ -391,7 +392,7 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
-                user.setGender(rs.getString("gender"));
+                user.setAddress(rs.getString("address"));
                 user.setJob(rs.getString("job"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
@@ -420,8 +421,8 @@ public class DatabaseHandler {
                 user.setAddress(rs.getString("address"));
                 user.setPassword(rs.getString("password"));
                 user.setUserName(rs.getString("username"));
+                user.setAddress(rs.getString("address"));
                 user.setJob(rs.getString("job"));
-                user.setGender(rs.getString("gender"));
                 user.setCreditLimit(rs.getInt("creditLimit"));
                 user.setIsAdmin(rs.getInt("isAdmin"));
                 users.add(user);
@@ -443,6 +444,7 @@ public class DatabaseHandler {
             pst.setString(1, user.getPassword());
             pst.setString(2, user.getAddress());
             pst.setString(3, user.getUserName());
+            //pst.setDate(4, (Date) user.getBirthday());
             pst.setString(4, user.getEmail());
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -545,6 +547,28 @@ public class DatabaseHandler {
     }
     
     ///////////////////////////// end of cash code processing ////////////////////
+    public int getMaxUserId() {
+        int id = -1;
+        try {
+            openConnection();
+            pst = conn.prepareStatement("SELECT max(id) FROM ecommerce.USER");
+           
+            rs = pst.executeQuery();
+            User user = null;
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            
+        } finally {
+            closeConnection();
+        }
+       return  id;
+    }
+    
+
     //////////////////////////// updates in DB 6-3-2017
     
     public int getMaxId() {
@@ -610,7 +634,7 @@ public class DatabaseHandler {
     public ArrayList<OrderItem> getOrders (int userId)
     {
         ArrayList<OrderItem> orderItems = new ArrayList<>();
-    
+        System.out.println("com.tnaneen.servletproject.DatabaseHandler.getOrders()|||| UserId >> " + userId);
         try {
             openConnection();
             
@@ -622,7 +646,7 @@ public class DatabaseHandler {
              {
                   OrderItem item = new OrderItem(rs.getInt(1), rs.getInt(2),rs.getInt(3) , rs.getDate(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
                   orderItems.add(item);
-                  System.out.println("com.tnaneen.servletproject.DatabaseHandler.getOrders()>>> Added Successfully ");
+                  System.out.println("com.tnaneen.servletproject.DatabaseHandler.getOrders()>>> Product#" + rs.getInt(3) );
              }
         } catch (SQLException ex) {
             
