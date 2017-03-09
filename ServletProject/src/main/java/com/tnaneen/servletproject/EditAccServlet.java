@@ -45,7 +45,14 @@ public class EditAccServlet extends HttpServlet {
         user.setUserName(username);
         user.setAddress(address);
         dbh.updateUser(user);
-        response.sendRedirect("Home.jsp");
+        if (user.getIsAdmin()==0) {
+             response.sendRedirect("Home.jsp");
+        }
+        else
+        {
+            response.sendRedirect("adminHome.jsp");
+        }
+       
         //user.setBirthday(null);
        
     }

@@ -246,7 +246,7 @@
                                     <h2><a href="">${mobile.getName()}</a></h2>
 
                                     <div class="product-carousel-price">
-                                        <ins>$${mobile.getPrice()}</ins> <del>$100</del>
+                                        <ins>$${mobile.getPrice()}</ins> 
                                     </div> 
                                 </div>
                             </c:forEach>
